@@ -11,31 +11,6 @@ const socialLinks = [
   { icon: SiLeetcode, label: 'LeetCode', value: 'leetcode.com/mohithseelam', href: personalData.social.leetcode, color: '#ff2d9e' },
 ]
 
-const pixelAvatar = [
-  [0,0,0,1,1,1,1,0,0,0],
-  [0,0,1,2,2,2,2,1,0,0],
-  [0,1,2,3,3,3,3,2,1,0],
-  [0,1,3,4,4,4,4,3,1,0],
-  [0,1,4,4,6,6,4,4,1,0],
-  [0,1,4,4,7,7,4,4,1,0],
-  [0,0,1,4,5,5,4,1,0,0],
-  [0,0,1,8,8,8,8,1,0,0],
-  [0,0,8,8,9,9,8,8,0,0],
-  [0,0,0,8,8,8,8,0,0,0],
-]
-
-const avatarColors = {
-  1: '#7e22ce',
-  2: '#9333ea',
-  3: '#a855f7',
-  4: '#f5d5c6',
-  5: '#f0b5a0',
-  6: '#ffffff',
-  7: '#1a1a2e',
-  8: '#4a9eff',
-  9: '#c084fc',
-}
-
 const particles = Array.from({ length: 20 }, (_, i) => ({
   id: i,
   x: Math.random() * 100,
@@ -179,7 +154,7 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            {/* Pixel art avatar */}
+            {/* Profile image */}
             <motion.div
               className="relative w-40 h-40 mx-auto lg:mx-0 mb-8"
               initial={{ opacity: 0, scale: 0.5 }}
@@ -188,38 +163,13 @@ export default function Contact() {
               transition={{ duration: 0.6, type: 'spring', stiffness: 100, damping: 14 }}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-pink-500/10 to-blue-500/20 blur-[40px] rounded-full" />
-              <div className="relative pixel-border rounded-xl p-0.5">
-                <div className="relative bg-dark-400/90 rounded-xl p-3 backdrop-blur-sm border border-purple-500/10">
-                  <div className="absolute inset-0 pixel-grid opacity-20 rounded-xl" />
-          <div className="relative w-full aspect-square">
-                    {pixelAvatar.map((row, ri) =>
-                      row.map((cell, ci) =>
-                        cell !== 0 ? (
-                          <motion.div
-                            key={`${ri}-${ci}`}
-                            className="absolute"
-                            style={{
-                              left: `${ci * 10}%`,
-                              top: `${ri * 10}%`,
-                              width: '10%',
-                              height: '10%',
-                              backgroundColor: avatarColors[cell],
-                              imageRendering: 'pixelated',
-                            }}
-                            initial={{ opacity: 0, scale: 0 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{
-                              delay: 0.3 + (ri * 10 + ci) * 0.01,
-                              type: 'spring',
-                              stiffness: 200,
-                              damping: 10,
-                            }}
-                          />
-                        ) : null
-                      )
-                    )}
-                  </div>
+              <div className="relative rounded-xl p-[3px] bg-gradient-to-br from-neon-purple via-neon-pink to-neon-blue shadow-lg shadow-purple-500/30">
+                <div className="relative bg-dark-400/90 rounded-xl p-3 backdrop-blur-sm">
+                  <motion.img
+                    src="/mohith.png"
+                    alt="Mohith"
+                    className="relative w-full h-full object-cover rounded-lg"
+                  />
                 </div>
               </div>
             </motion.div>
