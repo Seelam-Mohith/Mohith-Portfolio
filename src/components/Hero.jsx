@@ -4,31 +4,6 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { SiLeetcode } from 'react-icons/si'
 import { personalData } from '../data/portfolioData'
 
-const pixelArt = [
-  [0,0,0,1,1,1,1,0,0,0],
-  [0,0,1,2,2,2,2,1,0,0],
-  [0,1,2,3,3,3,3,2,1,0],
-  [0,1,3,4,4,4,4,3,1,0],
-  [0,1,4,4,6,6,4,4,1,0],
-  [0,1,4,4,7,7,4,4,1,0],
-  [0,0,1,4,5,5,4,1,0,0],
-  [0,0,1,8,8,8,8,1,0,0],
-  [0,0,8,8,9,9,8,8,0,0],
-  [0,0,0,8,8,8,8,0,0,0],
-]
-
-const colorMap = {
-  1: '#7e22ce',
-  2: '#9333ea',
-  3: '#a855f7',
-  4: '#f5d5c6',
-  5: '#f0b5a0',
-  6: '#ffffff',
-  7: '#1a1a2e',
-  8: '#4a9eff',
-  9: '#c084fc',
-}
-
 const badges = [
   { text: '2x Winner', top: '8%', right: '-8%', color: 'from-purple-600 to-pink-500', delay: 0.2 },
   { text: 'AI/ML', top: '42%', left: '-10%', color: 'from-blue-600 to-purple-500', delay: 0.6 },
@@ -251,58 +226,17 @@ export default function Hero() {
                 <div className="w-full h-full rounded-full bg-gradient-to-tr from-purple-400/10 via-transparent to-pink-400/10 blur-[60px]" />
               </motion.div>
 
-              {/* Pixel art container */}
+              {/* Profile image */}
               <div className="relative pixel-border rounded-2xl p-1">
-                <div className="relative bg-dark-400/90 rounded-2xl p-6 backdrop-blur-sm overflow-hidden border border-purple-500/10">
-                  <div className="absolute inset-0 pixel-grid opacity-20" />
-
-                  {/* Scanline overlay */}
-                  <div
-                    className="absolute inset-0 pointer-events-none"
-                    style={{
-                      background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 4px)',
-                    }}
+                <div className="relative bg-dark-400/90 rounded-2xl p-8 backdrop-blur-sm overflow-hidden border border-purple-500/10">
+                  <motion.img
+                    src="/mohith.png"
+                    alt="Mohith"
+                    className="relative w-64 h-64 object-cover rounded-xl"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, ease: 'easeOut', delay: 0.5 }}
                   />
-
-                  {/* Pixel art character */}
-                  <div className="relative w-64 h-64 mx-auto">
-                    {pixelArt.map((row, ri) =>
-                      row.map((cell, ci) =>
-                        cell !== 0 ? (
-                          <motion.div
-                            key={`${ri}-${ci}`}
-                            className="absolute"
-                            style={{
-                              left: `${ci * 10}%`,
-                              top: `${ri * 10}%`,
-                              width: '10%',
-                              height: '10%',
-                              backgroundColor: colorMap[cell],
-                              imageRendering: 'pixelated',
-                            }}
-                            initial={{ opacity: 0, scale: 0 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{
-                              delay: 0.5 + (ri * 10 + ci) * 0.015,
-                              type: 'spring',
-                              stiffness: 200,
-                              damping: 10,
-                            }}
-                          />
-                        ) : null
-                      )
-                    )}
-
-                    {/* Pixel art glow */}
-                    <motion.div
-                      className="absolute -inset-4 rounded-2xl"
-                      style={{
-                        background: 'radial-gradient(circle at 50% 50%, rgba(168,85,247,0.1) 0%, transparent 70%)',
-                      }}
-                      animate={{ opacity: [0.3, 0.6, 0.3] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                    />
-                  </div>
                 </div>
               </div>
 
