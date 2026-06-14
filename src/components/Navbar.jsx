@@ -103,7 +103,7 @@ export default function Navbar() {
                   variants={linkVariants}
                   whileHover="hover"
                   whileTap="tap"
-                  className={`relative text-sm uppercase tracking-widest transition-colors ${
+                  className={`relative text-sm font-bold uppercase tracking-widest transition-colors ${
                     activeLink === link.href
                       ? 'text-purple-400'
                       : 'text-gray-400 hover:text-gray-200'
@@ -175,7 +175,7 @@ export default function Navbar() {
                     onClick={(e) => handleNavClick(e, link.href)}
                     whileHover={{ scale: 1.1, color: '#a855f7' }}
                     whileTap={{ scale: 0.95 }}
-                    className={`text-2xl uppercase tracking-widest transition-colors ${
+                     className={`text-2xl font-bold uppercase tracking-widest transition-colors ${
                       activeLink === link.href
                         ? 'text-purple-400'
                         : 'text-gray-400'

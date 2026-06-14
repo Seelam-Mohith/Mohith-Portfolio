@@ -227,12 +227,12 @@ export default function Hero() {
               </motion.div>
 
               {/* Profile image */}
-              <div className="relative pixel-border rounded-2xl p-1">
+              <div className="relative pixel-border rounded-2xl p-1 -mt-12">
                 <div className="relative bg-dark-400/90 rounded-2xl p-8 backdrop-blur-sm overflow-hidden border border-purple-500/10">
                   <motion.img
                     src="/mohith.png"
                     alt="Mohith"
-                    className="relative w-64 h-64 object-cover rounded-xl"
+                    className="relative w-80 h-85 object-cover rounded-xl"
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6, ease: 'easeOut', delay: 0.5 }}
