@@ -93,9 +93,19 @@ function ProjectCard({ project, isNew }) {
           <PixelCorner />
 
           {project.live !== '#' && (
-            <span className="absolute top-3 right-3 z-10 px-2.5 py-0.5 rounded-md text-[10px] font-display font-bold tracking-wider text-white bg-gradient-to-r from-purple-600 to-purple-500 shadow-lg shadow-purple-500/30">
+            <motion.span
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: 'spring', stiffness: 200, damping: 12 }}
+              className="absolute top-3 right-3 z-10 flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[10px] font-display font-bold tracking-wider text-white bg-gradient-to-r from-purple-600 to-purple-500 shadow-lg shadow-purple-500/30"
+            >
+              <motion.span
+                animate={{ opacity: [1, 0.3, 1] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+                className="w-1.5 h-1.5 rounded-full bg-white"
+              />
               Live
-            </span>
+            </motion.span>
           )}
 
           <div className="p-5 md:p-6 flex flex-col flex-1 gap-4">
