@@ -65,9 +65,9 @@ export const skills = {
     { name: 'MySQL', icon: 'SiMysql', color: '#4479A1' },
   ],
   'AI/ML': [
-    { name: 'NumPy', icon: 'SiNumpy', color: '#013243' },
-    { name: 'Pandas', icon: 'SiPandas', color: '#150458' },
-    { name: 'Matplotlib', icon: 'SiMatplotlib', color: '#11557C' },
+    { name: 'NumPy', icon: 'SiNumpy', color: '#4DABCF' },
+    { name: 'Pandas', icon: 'SiPandas', color: '#E70488' },
+    { name: 'Matplotlib', icon: 'SiPlotly', color: '#3F8FBF' },
     { name: 'Scikit-learn', icon: 'SiScikitlearn', color: '#F7931E' },
     { name: 'SpaCy', icon: 'SiSpacy', color: '#09A3D5' },
     { name: 'Azure AI Services', icon: 'SiMicrosoftazure', color: '#0078D4' },

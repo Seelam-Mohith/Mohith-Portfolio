@@ -5,7 +5,7 @@ import {
   FaNodeJs, FaGitAlt, FaGithub,
 } from 'react-icons/fa'
 import {
-  SiExpress, SiFlask, SiMongodb, SiMysql, SiNumpy, SiPandas, SiMatplotlib,
+  SiExpress, SiFlask, SiMongodb, SiMysql, SiNumpy, SiPandas, SiPlotly,
   SiScikitlearn, SiSpacy, SiMicrosoftazure, SiPostman, SiVisualstudiocode, SiVercel,
 } from 'react-icons/si'
 import { skills } from '../data/portfolioData'
@@ -13,7 +13,7 @@ import { skills } from '../data/portfolioData'
 const iconMap = {
   FaPython, FaJava, FaJs, FaHtml5, FaCss3, FaBootstrap, FaReact,
   FaNodeJs, FaGitAlt, FaGithub,
-  SiExpress, SiFlask, SiMongodb, SiMysql, SiNumpy, SiPandas, SiMatplotlib,
+  SiExpress, SiFlask, SiMongodb, SiMysql, SiNumpy, SiPandas, SiPlotly,
   SiScikitlearn, SiSpacy, SiMicrosoftazure, SiPostman, SiVisualstudiocode, SiVercel,
 }
 
@@ -37,9 +37,9 @@ const floatingIcons = [
   { icon: SiMongodb, x: '7%', y: '50%', delay: 0.3, size: 22, color: '#47A248' },
   { icon: FaGitAlt, x: '93%', y: '55%', delay: 1.5, size: 24, color: '#F05032' },
   { icon: SiScikitlearn, x: '45%', y: '85%', delay: 2.1, size: 22, color: '#F7931E' },
-  { icon: SiNumpy, x: '30%', y: '20%', delay: 0.5, size: 22, color: '#013243' },
-  { icon: SiPandas, x: '70%', y: '40%', delay: 1.0, size: 22, color: '#150458' },
-  { icon: SiMatplotlib, x: '25%', y: '60%', delay: 1.6, size: 22, color: '#11557C' },
+  { icon: SiNumpy, x: '30%', y: '20%', delay: 0.5, size: 22, color: '#4DABCF' },
+  { icon: SiPandas, x: '70%', y: '40%', delay: 1.0, size: 22, color: '#E70488' },
+  { icon: SiPlotly, x: '25%', y: '60%', delay: 1.6, size: 22, color: '#3F8FBF' },
 ]
 
 const containerVariants = {
@@ -137,7 +137,7 @@ export default function Skills() {
         {floatingIcons.map((item, i) => (
           <motion.div
             key={i}
-            className="absolute opacity-[0.08]"
+            className="absolute opacity-[0.15]"
             style={{ left: item.x, top: item.y }}
             animate={{
               y: [0, -30, 0],
