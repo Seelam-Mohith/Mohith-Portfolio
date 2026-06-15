@@ -110,7 +110,7 @@ function ProjectCard({ project, isNew }) {
 
           <div className="p-5 md:p-6 flex flex-col flex-1 gap-4">
             <h3
-              className="text-lg md:text-xl font-accent font-bold tracking-wide"
+              className="text-lg md:text-xl font-display font-bold tracking-wide"
               style={{
                 background: 'linear-gradient(135deg, #c084fc, #a855f7)',
                 WebkitBackgroundClip: 'text',
@@ -147,7 +147,7 @@ function ProjectCard({ project, isNew }) {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs md:text-sm font-accent font-bold tracking-wider text-white transition-all duration-300"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs md:text-sm font-display font-bold tracking-wider text-white transition-all duration-300"
                 style={{
                   background: 'linear-gradient(135deg, rgba(168,85,247,0.2), rgba(124,58,237,0.1))',
                   border: '1px solid rgba(168,85,247,0.3)',
@@ -171,7 +171,7 @@ function ProjectCard({ project, isNew }) {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs md:text-sm font-accent font-bold tracking-wider text-white transition-all duration-300"
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs md:text-sm font-display font-bold tracking-wider text-white transition-all duration-300"
                   style={{
                     background: 'linear-gradient(135deg, #7e22ce, #9333ea)',
                     border: '1px solid rgba(168,85,247,0.5)',
@@ -186,7 +186,7 @@ function ProjectCard({ project, isNew }) {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => alert('Coming Soon!')}
-                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs md:text-sm font-accent font-bold tracking-wider text-white/60 transition-all duration-300 cursor-not-allowed"
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs md:text-sm font-display font-bold tracking-wider text-white/60 transition-all duration-300 cursor-not-allowed"
                   style={{
                     background: 'linear-gradient(135deg, rgba(126,34,206,0.3), rgba(147,51,234,0.2))',
                     border: '1px solid rgba(168,85,247,0.2)',
@@ -301,7 +301,7 @@ export default function Projects() {
             href="https://github.com/Seelam-Mohith"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-6 py-3 rounded-xl text-sm font-accent font-bold tracking-wider text-purple-300 border border-purple-500/30 hover:border-purple-400/60 hover:text-white transition-all duration-300"
+            className="inline-flex items-center gap-3 px-6 py-3 rounded-xl text-sm font-display font-bold tracking-wider text-purple-300 border border-purple-500/30 hover:border-purple-400/60 hover:text-white transition-all duration-300"
           >
             <FaGithub className="text-lg" />
             For more projects, visit my GitHub profile
