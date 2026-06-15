@@ -36,10 +36,11 @@ export const careerGoals = [
   'To start a Tech Venture',
 ]
 export const funFacts = [
-  'I can solve a Rubik\'s cube in under 2 minutes',
+  'Enjoy staying physically active and fit',
   'I\'ve participated in 10+ hackathons',
-  'My first line of code was in 8th grade',
-  'I love pixel-art games like Stardew Valley',
+  'Passionate about building real-world impact projects',
+  'Love playing story-driven campaign games',
+  'Always exploring new technologies and tools'
 ]
 
 export const skills = {
