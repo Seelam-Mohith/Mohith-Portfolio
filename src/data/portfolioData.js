@@ -63,6 +63,7 @@ export const skills = {
   Databases: [
     { name: 'MongoDB', icon: 'SiMongodb', color: '#47A248' },
     { name: 'MySQL', icon: 'SiMysql', color: '#4479A1' },
+    { name: 'Firebase', icon: 'SiFirebase', color: '#FFCA28' },
   ],
   'AI/ML': [
     { name: 'NumPy', icon: 'SiNumpy', color: '#4DABCF' },
@@ -74,10 +75,11 @@ export const skills = {
   ],
   'Tools & Platforms': [
     { name: 'Git', icon: 'FaGitAlt', color: '#F05032' },
-    { name: 'GitHub', icon: 'FaGithub', color: '#181717' },
-    { name: 'Postman', icon: 'SiPostman', color: '#FF6C37' },
+    { name: 'GitHub', icon: 'FaGithub', color: '#ffffff' },
     { name: 'VS Code', icon: 'SiVisualstudiocode', color: '#007ACC' },
     { name: 'Vercel', icon: 'SiVercel', color: '#000000' },
+    { name: 'Vite', icon: 'SiVite', color: '#646CFF' },
+    { name: 'Linux', icon: 'SiLinux', color: '#FCC624' },
   ],
 }
 
