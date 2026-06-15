@@ -117,6 +117,46 @@ export const projects = [
     live: '#',
     image: null,
   },
+  {
+    title: 'Align-AI',
+    description: 'A full-stack AI-powered career assistant that helps users analyze resumes, identify skill gaps, and evaluate job readiness. It generates personalized learning roadmaps and recommendations to support career growth and upskilling.',
+    tech: ['React', 'Node.js', 'Express.js', 'Python', 'Machine Learning', 'Unsupervised Learning'],
+    github: '#',
+    live: '#',
+    image: null,
+  },
+  {
+    title: 'Pixel-QR',
+    description: 'A lightweight Flask-based web application that transforms URLs and text into downloadable QR codes instantly. Designed for simplicity and speed, it provides a seamless way to generate high-quality QR codes through an intuitive interface.',
+    tech: ['Python', 'Flask', 'QR Code Generator', 'HTML', 'Render Deployment'],
+    github: '#',
+    live: '#',
+    image: null,
+  },
+  {
+    title: 'Voxora',
+    description: 'A speech-to-text AI agent that leverages LLMs to convert spoken language into accurate text and enable intelligent conversational interactions. Built with LiveKit and LangChain, it supports real-time voice processing and AI-powered responses.',
+    tech: ['Python', 'OpenAI', 'Speech-to-Text (STT)', 'LiveKit', 'LangChain'],
+    github: '#',
+    live: '#',
+    image: null,
+  },
+  {
+    title: 'FlickFinder.mov',
+    description: 'A movie discovery web application that allows users to search, explore, and learn more about their favorite films through a clean and responsive interface. Powered by the TMDB API, it provides detailed movie information and an engaging browsing experience.',
+    tech: ['React', 'TMDB API', 'Appwrite Database', 'JavaScript'],
+    github: '#',
+    live: '#',
+    image: null,
+  },
+  {
+    title: 'Planora',
+    description: 'A full-stack MERN project management platform designed to streamline task tracking and team collaboration. Following a Kanban-style SDLC workflow, it enables teams to organize, monitor, and manage projects efficiently from planning to completion.',
+    tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Axios'],
+    github: '#',
+    live: '#',
+    image: null,
+  },
 ]
 
 export const experiences = [
