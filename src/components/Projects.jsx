@@ -3,13 +3,6 @@ import { motion } from 'framer-motion'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import { projects } from '../data/portfolioData'
 
-const gradientPairs = [
-  ['#7e22ce', '#3b0764'],
-  ['#ff2d9e', '#7e22ce'],
-  ['#a855f7', '#4a1d96'],
-  ['#c084fc', '#6b21a8'],
-]
-
 const floatingPixels = [
   { x: '5%', y: '8%', size: 14, delay: 0, color: '#a855f7' },
   { x: '88%', y: '15%', size: 10, delay: 1.2, color: '#ff2d9e' },
@@ -20,10 +13,6 @@ const floatingPixels = [
   { x: '94%', y: '50%', size: 14, delay: 0.9, color: '#c084fc' },
   { x: '52%', y: '90%', size: 8, delay: 2.4, color: '#7e22ce' },
 ]
-
-const scanlineStyle = {
-  background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(168,85,247,0.04) 2px, rgba(168,85,247,0.04) 4px)',
-}
 
 const containerVariants = {
   hidden: {},
@@ -51,7 +40,7 @@ const PixelCorner = () => (
   </>
 )
 
-function ProjectCard({ project, index, colors, initial }) {
+function ProjectCard({ project, isNew }) {
   const cardRef = useRef(null)
   const [rotateX, setRotateX] = useState(0)
   const [rotateY, setRotateY] = useState(0)
@@ -88,10 +77,10 @@ function ProjectCard({ project, index, colors, initial }) {
         }}
         transition={{ type: 'spring', stiffness: 200, damping: 25 }}
         style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
-        className="relative rounded-2xl overflow-hidden cursor-default"
+        className="relative rounded-2xl overflow-hidden cursor-default h-full"
       >
         <div
-          className="relative transition-all duration-500"
+          className="relative transition-all duration-500 h-full flex flex-col"
           style={{
             background: `rgba(26, 26, 46, ${isHovered ? 0.7 : 0.5})`,
             backdropFilter: 'blur(12px)',
@@ -103,80 +92,7 @@ function ProjectCard({ project, index, colors, initial }) {
         >
           <PixelCorner />
 
-          <motion.div
-            className="absolute inset-0 pointer-events-none z-10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isHovered ? 1 : 0 }}
-            transition={{ duration: 0.3 }}
-            style={scanlineStyle}
-          />
-
-          <div
-            className="relative h-44 md:h-52 flex items-center justify-center overflow-hidden"
-            style={{ background: `linear-gradient(135deg, ${colors[0]}, ${colors[1]})` }}
-          >
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage: `
-                  linear-gradient(45deg, ${colors[1]}22 25%, transparent 25%),
-                  linear-gradient(-45deg, ${colors[1]}22 25%, transparent 25%),
-                  linear-gradient(45deg, transparent 75%, ${colors[1]}22 75%),
-                  linear-gradient(-45deg, transparent 75%, ${colors[1]}22 75%)
-                `,
-                backgroundSize: '16px 16px',
-                backgroundPosition: '0 0, 0 8px, 8px -8px, -8px 0px',
-              }}
-            />
-
-            <div
-              className="absolute inset-0"
-              style={{ background: 'radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08) 0%, transparent 50%)' }}
-            />
-
-            <motion.span
-              className="relative font-display font-bold text-white select-none"
-              style={{
-                fontSize: '5rem',
-                textShadow: '0 0 30px rgba(255,255,255,0.3)',
-              }}
-              animate={isHovered ? { scale: 1.1, rotate: [0, -5, 5, 0] } : {}}
-              transition={{ duration: 0.5 }}
-            >
-              {initial}
-            </motion.span>
-
-            <div className="absolute top-2 left-2 w-4 h-4 opacity-30 border-t-2 border-l-2 border-white/40" />
-            <div className="absolute top-2 right-2 w-4 h-4 opacity-30 border-t-2 border-r-2 border-white/40" />
-            <div className="absolute bottom-2 left-2 w-4 h-4 opacity-30 border-b-2 border-l-2 border-white/40" />
-            <div className="absolute bottom-2 right-2 w-4 h-4 opacity-30 border-b-2 border-r-2 border-white/40" />
-
-            {index === 0 && (
-              <motion.div
-                className="absolute top-3 right-3 z-20"
-                initial={{ scale: 0, rotate: -90 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ type: 'spring', stiffness: 200, damping: 12, delay: 0.5 }}
-              >
-                <div
-                  className="flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] font-display font-bold tracking-wider text-white"
-                  style={{
-                    background: 'linear-gradient(135deg, #ff2d9e, #ff6b3d)',
-                    boxShadow: '0 0 12px rgba(255,45,158,0.5)',
-                  }}
-                >
-                  <motion.span
-                    animate={{ opacity: [1, 0.3, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                    className="w-1.5 h-1.5 rounded-full bg-white"
-                  />
-                  NEW
-                </div>
-              </motion.div>
-            )}
-          </div>
-
-          <div className="p-5 md:p-6 space-y-4">
+          <div className="p-5 md:p-6 flex flex-col flex-1 gap-4">
             <h3
               className="text-lg md:text-xl font-display font-bold tracking-wide"
               style={{
@@ -189,7 +105,7 @@ function ProjectCard({ project, index, colors, initial }) {
               {project.title}
             </h3>
 
-            <p className="text-gray-400 font-body text-sm leading-relaxed">
+            <p className="text-gray-400 font-body text-sm leading-relaxed flex-1">
               {project.description}
             </p>
 
@@ -208,7 +124,7 @@ function ProjectCard({ project, index, colors, initial }) {
               ))}
             </div>
 
-            <div className="flex gap-3 pt-2">
+            <div className="flex gap-3 pt-2 mt-auto">
               <motion.a
                 href={project.github}
                 target="_blank"
@@ -332,15 +248,11 @@ export default function Projects() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
         >
           {projects.map((project, index) => {
-            const colors = gradientPairs[index % gradientPairs.length]
-            const initial = project.title.charAt(0)
             return (
               <ProjectCard
                 key={project.title}
                 project={project}
-                index={index}
-                colors={colors}
-                initial={initial}
+                isNew={index === 0}
               />
             )
           })}
