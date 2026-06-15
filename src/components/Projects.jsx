@@ -154,22 +154,38 @@ function ProjectCard({ project, isNew }) {
                 <FaGithub className="text-sm" />
                 <span>GitHub</span>
               </motion.a>
-              <motion.a
-                href={project.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs md:text-sm font-display font-bold tracking-wider text-white transition-all duration-300"
-                style={{
-                  background: 'linear-gradient(135deg, #7e22ce, #9333ea)',
-                  border: '1px solid rgba(168,85,247,0.5)',
-                  boxShadow: '0 0 15px rgba(168,85,247,0.15)',
-                }}
-              >
-                <FaExternalLinkAlt className="text-xs" />
-                <span>Live Demo</span>
-              </motion.a>
+              {project.live !== '#' ? (
+                <motion.a
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs md:text-sm font-display font-bold tracking-wider text-white transition-all duration-300"
+                  style={{
+                    background: 'linear-gradient(135deg, #7e22ce, #9333ea)',
+                    border: '1px solid rgba(168,85,247,0.5)',
+                    boxShadow: '0 0 15px rgba(168,85,247,0.15)',
+                  }}
+                >
+                  <FaExternalLinkAlt className="text-xs" />
+                  <span>Live Demo</span>
+                </motion.a>
+              ) : (
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => alert('Coming Soon!')}
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs md:text-sm font-display font-bold tracking-wider text-white/60 transition-all duration-300 cursor-not-allowed"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(126,34,206,0.3), rgba(147,51,234,0.2))',
+                    border: '1px solid rgba(168,85,247,0.2)',
+                  }}
+                >
+                  <FaExternalLinkAlt className="text-xs" />
+                  <span>Soon</span>
+                </motion.button>
+              )}
             </div>
           </div>
         </div>
