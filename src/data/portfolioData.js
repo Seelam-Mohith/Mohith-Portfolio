@@ -206,7 +206,7 @@ export const experiences = [
 
 export const hackathons = [
   {
-    name: 'Krithathon 3.0 Hackathon',
+    name: 'VNRVJIT Krithathon 3.0 Hackathon',
     project: 'AI-Powered Traffic Optimization System',
     position: '1st Place - Winner 🏆',
     tech: ['YOLOv8', 'OpenCV', 'Flutter', 'Firebase', 'OSM', 'OSRM'],
@@ -217,6 +217,7 @@ export const hackathons = [
       'Integrated OSM and OSRM for dynamic route optimization and traffic light simulation.',
       'Designed cross-platform mobile interface with Flutter and Firebase for real-time data sync.',
     ],
+    certificate: 'https://drive.google.com/file/d/16KNgleS4-BWNru21-u4PnqFkwwl5VKNV/view',
   },
   {
     name: 'CBIT Hacktoberfest Hackathon',
@@ -230,6 +231,7 @@ export const hackathons = [
       'Built the solution within a 24-hour hackathon environment using AI-powered text processing and summarization techniques.',
       'Collaborated with team members to design, develop, and present a functional prototype under tight deadlines.',
     ],
+    certificate: 'https://cbitosc.github.io/verify24/hfestM/?id=mohithHTF24M0010',
   },
 ]
 
