@@ -208,3 +208,14 @@
   will-change: transform, opacity;
   animation: cube-spin 14s ease-in-out infinite;
 }
+
+.floating-icon {
+  will-change: transform;
+  animation: float-icon 8s ease-in-out infinite;
+}
+
+@keyframes float-icon {
+  0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+  33% { transform: translateY(-16px) translateX(8px) rotate(6deg); }
+  66% { transform: translateY(-8px) translateX(-4px) rotate(-4deg); }
+}

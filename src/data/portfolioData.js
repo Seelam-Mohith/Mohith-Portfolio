@@ -177,7 +177,7 @@ export const experiences = [
   {
     role: 'General Secretary',
     organization: 'COSC – Technical Club',
-    duration: 'Dec 2025 – Present',
+    duration: '2026 – Present',
     responsibilities: [
       'Led the organization of Hacktoberfest, managing a team of 15 members and coordinating an event with 1,700+ participants worldwide and 350+ teams. Website: https://cbit-hacktoberfest25.vercel.app/',
       'Organized and delivered Global Open Source Awareness Sessions, encouraging students and developers to contribute to open-source projects and communities.',
@@ -191,7 +191,7 @@ export const experiences = [
   {
     role: 'Junior Developer',
     organization: 'COSC – Technical Club',
-    duration: 'Jan 2025 – Dec 2025',
+    duration: '2025 – 2026',
     responsibilities: [
       'Contributed to the development and maintenance of the HackWeek Website, which supported 900+ participants. Website: https://cosc-hackweek.vercel.app/',
       'Assisted in organizing and conducting Git & GitHub workshops, helping students learn version control and collaborative development practices.',
@@ -206,32 +206,30 @@ export const experiences = [
 
 export const hackathons = [
   {
-    name: 'TechFest Hackathon 2025',
-    project: 'AI Health Assistant',
-    position: '1st Place - Winner',
-    tech: ['React', 'Python', 'TensorFlow', 'Flask'],
+    name: 'Krithathon 3.0 Hackathon',
+    project: 'AI-Powered Traffic Optimization System',
+    position: '1st Place - Winner 🏆',
+    tech: ['YOLOv8', 'OpenCV', 'Flutter', 'Firebase', 'OSM', 'OSRM'],
     icon: 'trophy',
+    details: [
+      'Built an AI-powered traffic optimization system to reduce urban congestion using real-time vehicle detection.',
+      'Leveraged YOLOv8 and OpenCV for vehicle detection and tracking from live CCTV feeds.',
+      'Integrated OSM and OSRM for dynamic route optimization and traffic light simulation.',
+      'Designed cross-platform mobile interface with Flutter and Firebase for real-time data sync.',
+    ],
   },
   {
-    name: 'CodeForge Hackathon 2024',
-    project: 'Smart Campus App',
-    position: '1st Place - Winner',
-    tech: ['React Native', 'Node.js', 'Firebase', 'MongoDB'],
-    icon: 'trophy',
-  },
-  {
-    name: 'HackVerse 2024',
-    project: 'EcoTrack Carbon Calculator',
-    position: 'Finalist',
-    tech: ['React', 'Django', 'PostgreSQL', 'Chart.js'],
+    name: 'CBIT Hacktoberfest Hackathon',
+    project: 'Briefly AI – Video Summarization Platform',
+    position: '2nd Place - Runner Up',
+    tech: ['Django', 'Azure AI', 'Scikit-learn', 'SpaCy', 'NLP', 'Rapid Prototyping'],
     icon: 'medal',
-  },
-  {
-    name: 'BuildWithAI 2025',
-    project: 'AI Code Reviewer',
-    position: '2nd Runner Up',
-    tech: ['Python', 'OpenAI', 'FastAPI', 'React'],
-    icon: 'medal',
+    details: [
+      'Secured 2nd Place by developing Briefly AI, an intelligent video summarization platform.',
+      'The solution converts lengthy video content into concise and meaningful text summaries.',
+      'Built the solution within a 24-hour hackathon environment using AI-powered text processing and summarization techniques.',
+      'Collaborated with team members to design, develop, and present a functional prototype under tight deadlines.',
+    ],
   },
 ]
 

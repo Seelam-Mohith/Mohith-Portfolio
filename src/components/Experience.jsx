@@ -10,6 +10,7 @@ const roleDecorations = [
   { icon: FaCode, label: 'Full-Stack' },
   { icon: FaGithub, label: 'Open Source' },
   { icon: FaBrain, label: 'AI/ML' },
+  { icon: FaLaptopCode, label: 'Intern' },
 ]
 
 const floatingIcons = [
@@ -65,12 +66,10 @@ const PixelConnector = ({ isLeft }) => (
   >
     <div className="flex items-center gap-[1px]">
       {Array.from({ length: 6 }).map((_, i) => (
-        <motion.div
+        <div
           key={i}
           className="w-[3px] h-[3px]"
           style={{ background: i < 4 ? 'rgba(168,85,247,0.5)' : 'rgba(168,85,247,0.2)' }}
-          animate={{ opacity: [0.3, 0.8, 0.3] }}
-          transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.15 }}
         />
       ))}
     </div>
@@ -84,12 +83,10 @@ const ExperienceCard = ({ exp, index, isLeft }) => {
   return (
     <motion.div
       variants={isLeft ? cardFromLeft : cardFromRight}
-      className="group relative"
+      className="group h-full"
     >
-      <motion.div
-        whileHover={{ y: -8 }}
-        transition={{ type: 'spring', stiffness: 200, damping: 18 }}
-        className="relative rounded-2xl overflow-hidden"
+      <div
+        className="relative rounded-2xl overflow-hidden h-full flex flex-col transition-all duration-300"
         style={{
           background: 'rgba(26, 26, 46, 0.5)',
           backdropFilter: 'blur(12px)',
@@ -116,42 +113,27 @@ const ExperienceCard = ({ exp, index, isLeft }) => {
           }}
         />
 
-        {/* Role decoration icon */}
-        <motion.div
-          className="absolute top-3 right-3 text-purple-500/10"
-          animate={{
-            y: [0, -8, 0],
-            rotate: [0, 5, -5, 0],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: index * 0.5,
-          }}
-        >
-          <DecorationIcon size={36} />
-        </motion.div>
-
-        <div className="p-5 md:p-6 space-y-4">
-          {/* Role */}
-          <h3
-            className="text-lg md:text-xl font-accent font-bold tracking-wide"
-            style={{
-              fontFamily: 'Orbitron, monospace',
-              background: 'linear-gradient(135deg, #c084fc, #a855f7, #ec4899)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}
-          >
-            {exp.role}
-          </h3>
-
-          {/* Organization */}
-          <p className="text-gray-300 font-body text-sm font-medium">
-            {exp.organization}
-          </p>
+        <div className="p-5 md:p-6 flex flex-col flex-1 gap-4">
+          {/* Role + Organization */}
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0">
+              <h3
+                className="text-lg md:text-xl font-display font-bold tracking-wide"
+                style={{
+                  background: 'linear-gradient(135deg, #c084fc, #a855f7, #ec4899)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
+                {exp.role}
+              </h3>
+              <p className="text-gray-300 font-body text-sm font-medium mt-1">
+                {exp.organization}
+              </p>
+            </div>
+            <DecorationIcon className="text-purple-500/20 flex-shrink-0" size={28} />
+          </div>
 
           {/* Duration */}
           <div className="flex items-center gap-2 text-gray-400 font-body text-xs">
@@ -160,21 +142,17 @@ const ExperienceCard = ({ exp, index, isLeft }) => {
           </div>
 
           {/* Responsibilities */}
-          <div className="space-y-2">
-            <p className="text-purple-300 font-accent text-xs tracking-wider uppercase">Responsibilities</p>
+          <div className="space-y-2 flex-1">
+            <p className="text-purple-300 font-display text-xs tracking-wider uppercase">Responsibilities</p>
             <ul className="space-y-1.5">
               {exp.responsibilities.map((item, i) => (
-                <motion.li
+                <li
                   key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 * i, duration: 0.4 }}
                   className="flex items-start gap-2 text-gray-400 font-body text-sm"
                 >
                   <FaArrowRight className="text-purple-500/70 text-[10px] mt-1 flex-shrink-0" />
                   <span>{item}</span>
-                </motion.li>
+                </li>
               ))}
             </ul>
           </div>
@@ -182,74 +160,44 @@ const ExperienceCard = ({ exp, index, isLeft }) => {
           {/* Achievements */}
           {exp.achievements && exp.achievements.length > 0 && (
             <div className="space-y-2">
-              <p className="flex items-center gap-1.5 text-pink-300 font-accent text-xs tracking-wider uppercase">
+              <p className="flex items-center gap-1.5 text-pink-300 font-display text-xs tracking-wider uppercase">
                 <FaTrophy className="text-pink-400 text-[10px]" />
                 Achievements
               </p>
               <ul className="space-y-1.5">
                 {exp.achievements.map((item, i) => (
-                  <motion.li
+                  <li
                     key={i}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.15 * i, duration: 0.4 }}
                     className="flex items-start gap-2 text-gray-400 font-body text-sm"
                   >
                     <FaStar className="text-yellow-500/70 text-[10px] mt-1 flex-shrink-0" />
                     <span>{item}</span>
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
             </div>
           )}
         </div>
-      </motion.div>
+      </div>
     </motion.div>
   )
 }
 
 const TimelineDot = ({ index }) => (
   <div className="relative z-10 flex-shrink-0 md:absolute md:left-1/2 md:-translate-x-1/2">
-    <motion.div
+    <div
       className="w-10 h-10 rounded-full flex items-center justify-center"
       style={{
         background: 'rgba(26, 26, 46, 0.8)',
         border: '2px solid rgba(168, 85, 247, 0.6)',
-      }}
-      animate={{
-        boxShadow: [
-          '0 0 12px rgba(168,85,247,0.4), inset 0 0 8px rgba(168,85,247,0.1)',
-          '0 0 28px rgba(168,85,247,0.7), inset 0 0 16px rgba(168,85,247,0.3)',
-          '0 0 12px rgba(168,85,247,0.4), inset 0 0 8px rgba(168,85,247,0.1)',
-        ],
-      }}
-      transition={{
-        duration: 2.5,
-        repeat: Infinity,
-        ease: 'easeInOut',
-        delay: index * 0.4,
+        boxShadow: '0 0 16px rgba(168,85,247,0.5)',
       }}
     >
-      <motion.div
+      <div
         className="w-3 h-3 rounded-full"
         style={{ background: 'linear-gradient(135deg, #a855f7, #ec4899)' }}
-        animate={{
-          scale: [1, 1.4, 1],
-          boxShadow: [
-            '0 0 6px rgba(168,85,247,0.6)',
-            '0 0 18px rgba(168,85,247,0.9)',
-            '0 0 6px rgba(168,85,247,0.6)',
-          ],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: 'easeInOut',
-          delay: index * 0.4,
-        }}
       />
-    </motion.div>
+    </div>
   </div>
 )
 
@@ -268,24 +216,13 @@ export default function Experience() {
       {/* Floating background icons */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {floatingIcons.map((item, i) => (
-          <motion.div
+          <div
             key={i}
-            className="absolute opacity-[0.04]"
-            style={{ left: item.x, top: item.y }}
-            animate={{
-              y: [0, -20, 0],
-              x: [0, 10, 0],
-              rotate: [0, 8, -8, 0],
-            }}
-            transition={{
-              duration: 7 + i,
-              repeat: Infinity,
-              ease: 'easeInOut',
-              delay: item.delay,
-            }}
+            className="absolute opacity-[0.04] floating-icon"
+            style={{ left: item.x, top: item.y, animationDelay: `${item.delay}s` }}
           >
             <item.icon size={item.size} color={item.color} />
-          </motion.div>
+          </div>
         ))}
       </div>
 
@@ -315,7 +252,7 @@ export default function Experience() {
           className="text-center mb-16"
         >
           <h2
-            className="text-3xl md:text-5xl font-accent font-bold tracking-[0.2em]"
+            className="text-3xl md:text-5xl font-display font-bold tracking-[0.2em]"
             style={{
               background: 'linear-gradient(135deg, #c084fc, #a855f7, #ec4899)',
               WebkitBackgroundClip: 'text',

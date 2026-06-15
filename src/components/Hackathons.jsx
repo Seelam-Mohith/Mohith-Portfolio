@@ -6,12 +6,10 @@ import {
 } from 'react-icons/fa'
 import { hackathons } from '../data/portfolioData'
 
-const HACKATHON_DATA = [
-  { icon: 'trophy', ...hackathons[0] },
-  { icon: 'trophy', ...hackathons[1] },
-  { icon: 'medal', ...hackathons[2] },
-  { icon: 'medal', ...hackathons[3] },
-]
+const HACKATHON_DATA = hackathons.map((h) => ({
+  icon: h.icon,
+  ...h,
+}))
 
 const getPositionColor = (position) => {
   if (position.toLowerCase().includes('1st') || position.toLowerCase().includes('winner')) return 'gold'
@@ -141,10 +139,10 @@ const AchievementCard = ({ hack, index }) => {
         delay: index * 0.15,
       }}
       whileHover={{ y: -8, transition: { type: 'spring', stiffness: 200, damping: 18 } }}
-      className="group relative"
+      className="group relative h-full"
     >
       <motion.div
-        className="relative rounded-2xl overflow-hidden"
+        className="relative rounded-2xl overflow-hidden h-full flex flex-col"
         style={{
           background: isInView
             ? 'rgba(26, 26, 46, 0.6)'
@@ -212,10 +210,7 @@ const AchievementCard = ({ hack, index }) => {
           </div>
         )}
 
-        {/* NEW badge */}
-        <NewRevealBadge />
-
-        <div className="p-5 md:p-6 space-y-4">
+        <div className="p-6 md:p-8 space-y-5 flex-1">
           {/* Trophy / Medal icon */}
           <div className="flex justify-center">
             <motion.div
@@ -244,7 +239,7 @@ const AchievementCard = ({ hack, index }) => {
                 }}
               />
               <TrophyIcon
-                className="relative text-4xl md:text-5xl"
+                className="relative text-5xl md:text-6xl"
                 style={{
                   color: isWinner ? '#fbbf24' : rank === 'silver' ? '#cbd5e1' : '#fb923c',
                   filter: `drop-shadow(0 0 ${isWinner ? '12' : '6'}px ${isWinner ? 'rgba(250,204,21,0.6)' : 'rgba(168,85,247,0.4)'})`,
@@ -255,7 +250,7 @@ const AchievementCard = ({ hack, index }) => {
 
           {/* Hackathon Name */}
           <motion.h3
-            className="text-center text-lg md:text-xl font-display font-bold tracking-wide"
+            className="text-center text-xl md:text-2xl font-display font-bold tracking-wide"
             style={{
               fontFamily: 'Orbitron, monospace',
               background: isWinner
@@ -268,11 +263,6 @@ const AchievementCard = ({ hack, index }) => {
           >
             {hack.name}
           </motion.h3>
-
-          {/* Project description */}
-          <p className="text-gray-400 font-body text-sm text-center leading-relaxed">
-            {hack.project}
-          </p>
 
           {/* Position Badge */}
           <div className="flex justify-center">
@@ -289,6 +279,21 @@ const AchievementCard = ({ hack, index }) => {
               {isWinner ? <FaCrown className="text-[10px]" /> : <FaStarHalfAlt className="text-[10px]" />}
               <span>{hack.position}</span>
             </motion.div>
+          </div>
+
+          {/* Project description */}
+          <div className="space-y-2">
+            {hack.details ? (
+              hack.details.map((detail, i) => (
+                <p key={i} className="text-gray-400 font-body text-sm leading-relaxed">
+                  • {detail}
+                </p>
+              ))
+            ) : (
+              <p className="text-gray-400 font-body text-sm text-center leading-relaxed">
+                {hack.project}
+              </p>
+            )}
           </div>
 
           {/* Tech stack tags */}
@@ -328,6 +333,37 @@ const AchievementCard = ({ hack, index }) => {
             >
               +{isWinner ? '500' : rank === 'silver' ? '300' : '150'} XP
             </span>
+          </motion.div>
+
+          {/* View Certificate */}
+          <motion.div
+            className="text-center mt-auto pt-3"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.8 + index * 0.15 }}
+          >
+            <a
+              href={hack.certificate || '#'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold font-display tracking-wider transition-all duration-300"
+              style={{
+                color: isWinner ? '#fbbf24' : '#c084fc',
+                border: `1px solid ${isWinner ? 'rgba(250,204,21,0.4)' : 'rgba(168,85,247,0.4)'}`,
+                background: isWinner ? 'rgba(250,204,21,0.08)' : 'rgba(168,85,247,0.08)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = isWinner ? 'rgba(250,204,21,0.2)' : 'rgba(168,85,247,0.2)'
+                e.currentTarget.style.boxShadow = `0 0 20px ${isWinner ? 'rgba(250,204,21,0.3)' : 'rgba(168,85,247,0.3)'}`
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = isWinner ? 'rgba(250,204,21,0.08)' : 'rgba(168,85,247,0.08)'
+                e.currentTarget.style.boxShadow = 'none'
+              }}
+            >
+              <span>View Certificate</span>
+            </a>
           </motion.div>
         </div>
 
@@ -490,7 +526,7 @@ export default function Hackathons() {
 
         {/* Achievement Grid */}
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6 max-w-3xl mx-auto items-stretch"
         >
           {HACKATHON_DATA.map((hack, index) => (
             <AchievementCard key={hack.name} hack={hack} index={index} />
