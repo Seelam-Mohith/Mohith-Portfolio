@@ -5,9 +5,9 @@ export const personalData = {
   about: "I am a Computer Science Engineering student passionate about Artificial Intelligence, Machine Learning, and Full-Stack Development. I enjoy participating in hackathons, building innovative products, and continuously learning new technologies. My interests include MERN Stack Development, AI-powered applications, cloud technologies, and competitive programming.",
   email: 'mohith.seelam@email.com',
   social: {
-    github: 'https://github.com/mohithseelam',
-    linkedin: 'https://linkedin.com/in/mohithseelam',
-    leetcode: 'https://leetcode.com/mohithseelam',
+    github: 'https://github.com/Seelam-Mohith',
+    linkedin: 'https://www.linkedin.com/in/mohith-seelam',
+    leetcode: 'https://leetcode.com/MohithSeelam',
   },
   resumeUrl: '#',
 }
