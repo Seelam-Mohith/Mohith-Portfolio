@@ -130,7 +130,7 @@ export const projects = [
     description: 'A lightweight Flask-based web application that transforms URLs and text into downloadable QR codes instantly. Designed for simplicity and speed, it provides a seamless way to generate high-quality QR codes through an intuitive interface.',
     tech: ['Python', 'Flask', 'QR Code Generator', 'HTML', 'Render Deployment'],
     github: 'https://github.com/Seelam-Mohith/Pixel-QR',
-    live: '#',
+    live: 'https://pixel-qr.onrender.com/',
     image: null,
   },
   {
@@ -138,7 +138,7 @@ export const projects = [
     description: 'A speech-to-text AI agent that leverages LLMs to convert spoken language into accurate text and enable intelligent conversational interactions. Built with LiveKit and LangChain, it supports real-time voice processing and AI-powered responses.',
     tech: ['Python', 'OpenAI', 'Speech-to-Text (STT)', 'LiveKit', 'LangChain'],
     github: 'https://github.com/Seelam-Mohith/Voxora',
-    live: 'pixel-qr.onrender.com',
+    live: '#',
     image: null,
   },
   {
@@ -146,7 +146,7 @@ export const projects = [
     description: 'A movie discovery web application that allows users to search, explore, and learn more about their favorite films through a clean and responsive interface. Powered by the TMDB API, it provides detailed movie information and an engaging browsing experience.',
     tech: ['React', 'TMDB API', 'Appwrite Database', 'JavaScript'],
     github: 'https://github.com/Seelam-Mohith/FlickFinder.mov',
-    live: 'flickfinder-mov.vercel.app/',
+    live: 'https://flickfinder-mov.vercel.app/',
     image: null,
   },
   {

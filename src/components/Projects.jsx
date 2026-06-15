@@ -92,6 +92,12 @@ function ProjectCard({ project, isNew }) {
         >
           <PixelCorner />
 
+          {project.live !== '#' && (
+            <span className="absolute top-3 right-3 z-10 px-2.5 py-0.5 rounded-md text-[10px] font-display font-bold tracking-wider text-white bg-gradient-to-r from-purple-600 to-purple-500 shadow-lg shadow-purple-500/30">
+              Live
+            </span>
+          )}
+
           <div className="p-5 md:p-6 flex flex-col flex-1 gap-4">
             <h3
               className="text-lg md:text-xl font-display font-bold tracking-wide"
