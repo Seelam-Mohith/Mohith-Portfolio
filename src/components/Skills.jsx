@@ -6,8 +6,8 @@ import {
 } from 'react-icons/fa'
 import {
   SiExpress, SiFlask, SiMongodb, SiMysql, SiNumpy, SiPandas, SiPlotly,
-  SiScikitlearn, SiSpacy, SiMicrosoftazure, SiVisualstudiocode, SiVercel,
-  SiFirebase, SiVite, SiLinux,
+  SiScikitlearn, SiSpacy, SiVisualstudiocode, SiVercel,
+  SiFirebase, SiVite, SiLinux, SiFigma,
 } from 'react-icons/si'
 import { skills } from '../data/portfolioData'
 
@@ -15,8 +15,8 @@ const iconMap = {
   FaPython, FaJava, FaJs, FaHtml5, FaCss3, FaBootstrap, FaReact,
   FaNodeJs, FaGitAlt, FaGithub,
   SiExpress, SiFlask, SiMongodb, SiMysql, SiNumpy, SiPandas, SiPlotly,
-  SiScikitlearn, SiSpacy, SiMicrosoftazure, SiVisualstudiocode, SiVercel,
-  SiFirebase, SiVite, SiLinux,
+  SiScikitlearn, SiSpacy, SiVisualstudiocode, SiVercel,
+  SiFirebase, SiVite, SiLinux, SiFigma,
 }
 
 const categories = ['All', 'Languages', 'Frontend', 'Backend', 'Databases', 'AI/ML', 'Tools & Platforms']

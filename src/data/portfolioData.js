@@ -14,27 +14,27 @@ export const personalData = {
 
 export const education = {
   degree: 'B.Tech in Computer Science Engineering',
+  specialization: 'Cybersecurity, Blockchain and IoT',
   university: 'University Name',
   year: '2023 - 2027',
   cgpa: '8.5/10',
 }
 
 export const interests = [
-  'Artificial Intelligence & ML',
-  'Full-Stack Development',
-  'Cloud Technologies',
-  'Competitive Programming',
-  'Open Source Contribution',
+  'Artificial Intelligence & Machine Learning',
+  'Full Stack Development',
+  'Data Structures & Algorithms',
+  'Cybersecurity',
   'UI/UX Design',
 ]
 
 export const careerGoals = [
   'Become a full-stack AI engineer',
-  'Build products that impact millions',
+  'Build a strong tech portfolio',
   'Contribute to open-source AI tools',
-  'Start my own tech venture',
+  'Secure a top-tier internship',
+  'To start a Tech Venture',
 ]
-
 export const funFacts = [
   'I can solve a Rubik\'s cube in under 2 minutes',
   'I\'ve participated in 10+ hackathons',
@@ -71,7 +71,6 @@ export const skills = {
     { name: 'Matplotlib', icon: 'SiPlotly', color: '#3F8FBF' },
     { name: 'Scikit-learn', icon: 'SiScikitlearn', color: '#F7931E' },
     { name: 'SpaCy', icon: 'SiSpacy', color: '#09A3D5' },
-    { name: 'Azure AI Services', icon: 'SiMicrosoftazure', color: '#0078D4' },
   ],
   'Tools & Platforms': [
     { name: 'Git', icon: 'FaGitAlt', color: '#F05032' },
@@ -80,6 +79,7 @@ export const skills = {
     { name: 'Vercel', icon: 'SiVercel', color: '#000000' },
     { name: 'Vite', icon: 'SiVite', color: '#646CFF' },
     { name: 'Linux', icon: 'SiLinux', color: '#FCC624' },
+    { name: 'Figma', icon: 'SiFigma', color: '#F24E1E' },
   ],
 }
 

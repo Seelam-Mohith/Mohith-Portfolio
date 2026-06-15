@@ -115,6 +115,7 @@ export default function About() {
             </div>
             <div className="space-y-2 text-gray-300 font-body">
               <p className="text-purple-200 font-semibold text-base">{education.degree}</p>
+              <p className="text-xs text-purple-300/70">Specialization in {education.specialization}</p>
               <p className="text-sm">{education.university}</p>
               <div className="flex items-center gap-4 pt-1">
                 <span className="text-xs text-purple-400/80 bg-purple-500/10 px-3 py-1 rounded">{education.year}</span>
