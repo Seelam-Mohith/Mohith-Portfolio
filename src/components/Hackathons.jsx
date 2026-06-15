@@ -124,12 +124,11 @@ const AchievementCard = ({ hack, index }) => {
   return (
     <motion.div
       ref={cardRef}
-      initial={{ opacity: 0, y: 50, scale: 0.9, filter: 'grayscale(100%) saturate(0%)' }}
+      initial={{ opacity: 0, y: 50, scale: 0.9 }}
       whileInView={{
         opacity: 1,
         y: 0,
         scale: 1,
-        filter: 'grayscale(0%) saturate(100%)',
       }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{

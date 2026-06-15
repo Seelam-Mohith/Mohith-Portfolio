@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaEnvelope, FaGithub, FaLinkedin, FaPaperPlane, FaCheckCircle } from 'react-icons/fa'
 import { SiLeetcode } from 'react-icons/si'
+import { sendEmail } from '../lib/emailjs'
 import { personalData } from '../data/portfolioData'
 
 const socialLinks = [
@@ -56,16 +57,19 @@ export default function Contact() {
     setForm((prev) => ({ ...prev, [id]: value }))
   }, [])
 
-  const handleSubmit = useCallback((e) => {
+  const handleSubmit = useCallback(async (e) => {
     e.preventDefault()
     if (!form.name || !form.email || !form.subject || !form.message) return
     setSending(true)
-    setTimeout(() => {
-      setSending(false)
+    const result = await sendEmail(form)
+    if (result.success) {
       setSubmitted(true)
       setForm({ name: '', email: '', subject: '', message: '' })
-      setTimeout(() => setSubmitted(false), 4000)
-    }, 1500)
+    } else {
+      alert('Failed to send message. Please try again later.')
+    }
+    setSending(false)
+    setTimeout(() => setSubmitted(false), 4000)
   }, [form])
 
   return (
@@ -236,7 +240,7 @@ export default function Contact() {
             className="relative"
           >
             <div
-              className="relative p-6 md:p-8 rounded-2xl"
+              className="relative p-4 md:p-5 rounded-2xl"
               style={{
                 background: 'rgba(26, 26, 46, 0.4)',
                 backdropFilter: 'blur(12px)',
