@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from 'react'
 import { motion, useInView } from 'framer-motion'
 import {
   FaTrophy, FaMedal, FaStar, FaFire, FaCrown, FaGamepad,
-  FaStarHalfAlt, FaPlus, FaLock, FaLockOpen,
+  FaStarHalfAlt, FaPlus, FaLock, FaLockOpen, FaGithub,
 } from 'react-icons/fa'
 import { hackathons } from '../data/portfolioData'
 
@@ -335,9 +335,9 @@ const AchievementCard = ({ hack, index }) => {
             </span>
           </motion.div>
 
-          {/* View Certificate */}
+          {/* View Certificate / GitHub */}
           <motion.div
-            className="text-center mt-auto pt-3"
+            className="flex justify-center gap-3 mt-auto pt-3"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -363,6 +363,28 @@ const AchievementCard = ({ hack, index }) => {
               }}
             >
               <span>View Certificate</span>
+            </a>
+            <a
+              href={hack.github || '#'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold font-display tracking-wider transition-all duration-300"
+              style={{
+                color: '#9ca3af',
+                border: '1px solid rgba(156,163,175,0.4)',
+                background: 'rgba(156,163,175,0.08)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(156,163,175,0.2)'
+                e.currentTarget.style.boxShadow = '0 0 20px rgba(156,163,175,0.3)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(156,163,175,0.08)'
+                e.currentTarget.style.boxShadow = 'none'
+              }}
+            >
+              <FaGithub className="text-sm" />
+              <span>Source Code</span>
             </a>
           </motion.div>
         </div>

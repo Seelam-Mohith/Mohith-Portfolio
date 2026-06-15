@@ -218,6 +218,7 @@ export const hackathons = [
       'Designed cross-platform mobile interface with Flutter and Firebase for real-time data sync.',
     ],
     certificate: 'https://drive.google.com/file/d/16KNgleS4-BWNru21-u4PnqFkwwl5VKNV/view',
+    github: '#',
   },
   {
     name: 'CBIT Hacktoberfest Hackathon',
@@ -232,6 +233,7 @@ export const hackathons = [
       'Collaborated with team members to design, develop, and present a functional prototype under tight deadlines.',
     ],
     certificate: 'https://cbitosc.github.io/verify24/hfestM/?id=mohithHTF24M0010',
+    github: '#',
   },
 ]
 
