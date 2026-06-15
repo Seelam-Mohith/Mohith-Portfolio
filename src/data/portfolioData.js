@@ -47,7 +47,7 @@ export const skills = {
     { name: 'Python', icon: 'FaPython', color: '#3776AB' },
     { name: 'Java', icon: 'FaJava', color: '#007396' },
     { name: 'JavaScript', icon: 'FaJs', color: '#F7DF1E' },
-    { name: 'C/C++', icon: 'SiCplusplus', color: '#00599C' },
+
   ],
   Frontend: [
     { name: 'HTML', icon: 'FaHtml5', color: '#E34F26' },
@@ -57,14 +57,17 @@ export const skills = {
   ],
   Backend: [
     { name: 'Node.js', icon: 'FaNodeJs', color: '#339933' },
-    { name: 'Express.js', icon: 'SiExpress', color: '#000000' },
-    { name: 'Django', icon: 'SiDjango', color: '#092E20' },
+    { name: 'Express.js', icon: 'SiExpress', color: '#ffffff' },
+    { name: 'Flask', icon: 'SiFlask', color: '#C0C0C0' },
   ],
   Databases: [
     { name: 'MongoDB', icon: 'SiMongodb', color: '#47A248' },
     { name: 'MySQL', icon: 'SiMysql', color: '#4479A1' },
   ],
   'AI/ML': [
+    { name: 'NumPy', icon: 'SiNumpy', color: '#013243' },
+    { name: 'Pandas', icon: 'SiPandas', color: '#150458' },
+    { name: 'Matplotlib', icon: 'SiMatplotlib', color: '#11557C' },
     { name: 'Scikit-learn', icon: 'SiScikitlearn', color: '#F7931E' },
     { name: 'SpaCy', icon: 'SiSpacy', color: '#09A3D5' },
     { name: 'Azure AI Services', icon: 'SiMicrosoftazure', color: '#0078D4' },

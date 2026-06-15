@@ -5,16 +5,16 @@ import {
   FaNodeJs, FaGitAlt, FaGithub,
 } from 'react-icons/fa'
 import {
-  SiCplusplus, SiExpress, SiDjango, SiMongodb, SiMysql, SiScikitlearn,
-  SiSpacy, SiMicrosoftazure, SiPostman, SiVisualstudiocode, SiVercel,
+  SiExpress, SiFlask, SiMongodb, SiMysql, SiNumpy, SiPandas, SiMatplotlib,
+  SiScikitlearn, SiSpacy, SiMicrosoftazure, SiPostman, SiVisualstudiocode, SiVercel,
 } from 'react-icons/si'
 import { skills } from '../data/portfolioData'
 
 const iconMap = {
   FaPython, FaJava, FaJs, FaHtml5, FaCss3, FaBootstrap, FaReact,
   FaNodeJs, FaGitAlt, FaGithub,
-  SiCplusplus, SiExpress, SiDjango, SiMongodb, SiMysql, SiScikitlearn,
-  SiSpacy, SiMicrosoftazure, SiPostman, SiVisualstudiocode, SiVercel,
+  SiExpress, SiFlask, SiMongodb, SiMysql, SiNumpy, SiPandas, SiMatplotlib,
+  SiScikitlearn, SiSpacy, SiMicrosoftazure, SiPostman, SiVisualstudiocode, SiVercel,
 }
 
 const categories = ['All', 'Languages', 'Frontend', 'Backend', 'Databases', 'AI/ML', 'Tools & Platforms']
@@ -33,10 +33,13 @@ const floatingIcons = [
   { icon: FaReact, x: '90%', y: '20%', delay: 1.2, size: 32, color: '#61DAFB' },
   { icon: FaNodeJs, x: '10%', y: '70%', delay: 0.6, size: 26, color: '#339933' },
   { icon: FaJava, x: '85%', y: '75%', delay: 1.8, size: 30, color: '#007396' },
-  { icon: SiDjango, x: '50%', y: '8%', delay: 2.4, size: 24, color: '#092E20' },
+  { icon: SiFlask, x: '50%', y: '8%', delay: 2.4, size: 24, color: '#C0C0C0' },
   { icon: SiMongodb, x: '7%', y: '50%', delay: 0.3, size: 22, color: '#47A248' },
   { icon: FaGitAlt, x: '93%', y: '55%', delay: 1.5, size: 24, color: '#F05032' },
   { icon: SiScikitlearn, x: '45%', y: '85%', delay: 2.1, size: 22, color: '#F7931E' },
+  { icon: SiNumpy, x: '30%', y: '20%', delay: 0.5, size: 22, color: '#013243' },
+  { icon: SiPandas, x: '70%', y: '40%', delay: 1.0, size: 22, color: '#150458' },
+  { icon: SiMatplotlib, x: '25%', y: '60%', delay: 1.6, size: 22, color: '#11557C' },
 ]
 
 const containerVariants = {
@@ -134,7 +137,7 @@ export default function Skills() {
         {floatingIcons.map((item, i) => (
           <motion.div
             key={i}
-            className="absolute opacity-[0.04]"
+            className="absolute opacity-[0.08]"
             style={{ left: item.x, top: item.y }}
             animate={{
               y: [0, -30, 0],
