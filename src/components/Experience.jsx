@@ -136,7 +136,7 @@ const ExperienceCard = ({ exp, index, isLeft }) => {
         <div className="p-5 md:p-6 space-y-4">
           {/* Role */}
           <h3
-            className="text-lg md:text-xl font-display font-bold tracking-wide"
+            className="text-lg md:text-xl font-accent font-bold tracking-wide"
             style={{
               fontFamily: 'Orbitron, monospace',
               background: 'linear-gradient(135deg, #c084fc, #a855f7, #ec4899)',
@@ -161,7 +161,7 @@ const ExperienceCard = ({ exp, index, isLeft }) => {
 
           {/* Responsibilities */}
           <div className="space-y-2">
-            <p className="text-purple-300 font-display text-xs tracking-wider uppercase">Responsibilities</p>
+            <p className="text-purple-300 font-accent text-xs tracking-wider uppercase">Responsibilities</p>
             <ul className="space-y-1.5">
               {exp.responsibilities.map((item, i) => (
                 <motion.li
@@ -182,7 +182,7 @@ const ExperienceCard = ({ exp, index, isLeft }) => {
           {/* Achievements */}
           {exp.achievements && exp.achievements.length > 0 && (
             <div className="space-y-2">
-              <p className="flex items-center gap-1.5 text-pink-300 font-display text-xs tracking-wider uppercase">
+              <p className="flex items-center gap-1.5 text-pink-300 font-accent text-xs tracking-wider uppercase">
                 <FaTrophy className="text-pink-400 text-[10px]" />
                 Achievements
               </p>
@@ -315,7 +315,7 @@ export default function Experience() {
           className="text-center mb-16"
         >
           <h2
-            className="text-3xl md:text-5xl font-display font-bold tracking-[0.2em]"
+            className="text-3xl md:text-5xl font-accent font-bold tracking-[0.2em]"
             style={{
               background: 'linear-gradient(135deg, #c084fc, #a855f7, #ec4899)',
               WebkitBackgroundClip: 'text',

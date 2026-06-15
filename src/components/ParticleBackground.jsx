@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import { motion } from "framer-motion";
 
 const PARTICLE_COLORS = ["#a855f7", "#7c3aed", "#ec4899", "#d8b4fe"];
 const STAR_COLOR = "#c084fc";
@@ -14,8 +13,8 @@ const particles = Array.from({ length: 35 }, (_, i) => ({
   y: rand(0, 100),
   size: rand(2, 6),
   color: PARTICLE_COLORS[randInt(0, PARTICLE_COLORS.length - 1)],
-  duration: rand(8, 20),
-  delay: rand(0, 10),
+  duration: rand(10, 18),
+  delay: rand(0, 8),
 }));
 
 const stars = Array.from({ length: 12 }, (_, i) => ({
@@ -25,7 +24,7 @@ const stars = Array.from({ length: 12 }, (_, i) => ({
   size: 4,
   color: STAR_COLOR,
   duration: rand(2, 4),
-  delay: rand(0, 5),
+  delay: rand(0, 4),
 }));
 
 const orbs = Array.from({ length: 6 }, (_, i) => ({
@@ -34,8 +33,8 @@ const orbs = Array.from({ length: 6 }, (_, i) => ({
   y: rand(0, 100),
   size: rand(80, 200),
   color: PARTICLE_COLORS[i % PARTICLE_COLORS.length],
-  duration: rand(12, 25),
-  delay: rand(0, 8),
+  duration: rand(15, 22),
+  delay: rand(0, 6),
 }));
 
 const cubes = Array.from({ length: 7 }, (_, i) => ({
@@ -44,8 +43,8 @@ const cubes = Array.from({ length: 7 }, (_, i) => ({
   y: rand(0, 100),
   size: rand(8, 16),
   color: CUBE_COLORS[randInt(0, CUBE_COLORS.length - 1)],
-  duration: rand(10, 20),
-  delay: rand(0, 6),
+  duration: rand(12, 18),
+  delay: rand(0, 5),
 }));
 
 export default function ParticleBackground() {
@@ -55,35 +54,28 @@ export default function ParticleBackground() {
   const cubeData = useMemo(() => cubes, []);
 
   return (
-    <div className="fixed inset-0 -z-0 overflow-hidden pointer-events-none">
+    <div className="fixed inset-0 -z-0 overflow-hidden pointer-events-none will-change-transform">
       {particleData.map((p) => (
-        <motion.div
+        <div
           key={p.id}
-          className="absolute rounded-full"
+          className="absolute rounded-full particle-float"
           style={{
             left: `${p.x}%`,
             top: `${p.y}%`,
             width: p.size,
             height: p.size,
             backgroundColor: p.color,
-          }}
-          animate={{
-            y: [0, -30, 0, 20, 0],
-            opacity: [0.4, 0.8, 0.5, 0.7, 0.4],
-          }}
-          transition={{
-            duration: p.duration,
-            delay: p.delay,
-            repeat: Infinity,
-            ease: "easeInOut",
+            animationDuration: `${p.duration}s`,
+            animationDelay: `${p.delay}s`,
+            opacity: 0.4,
           }}
         />
       ))}
 
       {starData.map((s) => (
-        <motion.div
+        <div
           key={s.id}
-          className="absolute"
+          className="absolute star-twinkle"
           style={{
             left: `${s.x}%`,
             top: `${s.y}%`,
@@ -91,48 +83,32 @@ export default function ParticleBackground() {
             height: s.size,
             backgroundColor: s.color,
             imageRendering: "pixelated",
-          }}
-          animate={{
-            opacity: [0, 1, 0],
-            scale: [0.8, 1.2, 0.8],
-          }}
-          transition={{
-            duration: s.duration,
-            delay: s.delay,
-            repeat: Infinity,
-            ease: "easeInOut",
+            animationDuration: `${s.duration}s`,
+            animationDelay: `${s.delay}s`,
           }}
         />
       ))}
 
       {orbData.map((o) => (
-        <motion.div
+        <div
           key={o.id}
-          className="absolute rounded-full blur-3xl"
+          className="absolute rounded-full orb-float"
           style={{
             left: `${o.x}%`,
             top: `${o.y}%`,
             width: o.size,
             height: o.size,
             background: `radial-gradient(circle, ${o.color}33 0%, ${o.color}11 60%, transparent 100%)`,
-          }}
-          animate={{
-            y: [0, -40, 0, 30, 0],
-            scale: [1, 1.1, 0.95, 1.05, 1],
-          }}
-          transition={{
-            duration: o.duration,
-            delay: o.delay,
-            repeat: Infinity,
-            ease: "easeInOut",
+            animationDuration: `${o.duration}s`,
+            animationDelay: `${o.delay}s`,
           }}
         />
       ))}
 
       {cubeData.map((c) => (
-        <motion.div
+        <div
           key={c.id}
-          className="absolute"
+          className="absolute cube-spin"
           style={{
             left: `${c.x}%`,
             top: `${c.y}%`,
@@ -140,17 +116,9 @@ export default function ParticleBackground() {
             height: c.size,
             backgroundColor: c.color,
             imageRendering: "pixelated",
-          }}
-          animate={{
-            y: [0, -20, 0, 15, 0],
-            rotate: [0, 90, 180, 270, 360],
-            opacity: [0.3, 0.6, 0.4, 0.5, 0.3],
-          }}
-          transition={{
-            duration: c.duration,
-            delay: c.delay,
-            repeat: Infinity,
-            ease: "easeInOut",
+            animationDuration: `${c.duration}s`,
+            animationDelay: `${c.delay}s`,
+            opacity: 0.3,
           }}
         />
       ))}

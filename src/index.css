@@ -157,3 +157,48 @@
     background-clip: text;
   }
 }
+
+@keyframes particle-float {
+  0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.4; }
+  25% { transform: translateY(-20px) translateX(8px); opacity: 0.7; }
+  50% { transform: translateY(-10px) translateX(-5px); opacity: 0.5; }
+  75% { transform: translateY(-30px) translateX(10px); opacity: 0.8; }
+}
+
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes orb-float {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+}
+
+@keyframes cube-spin {
+  0% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+  25% { transform: translateY(-15px) rotate(90deg); opacity: 0.5; }
+  50% { transform: translateY(-5px) rotate(180deg); opacity: 0.4; }
+  75% { transform: translateY(-20px) rotate(270deg); opacity: 0.6; }
+  100% { transform: translateY(0px) rotate(360deg); opacity: 0.3; }
+}
+
+.particle-float {
+  will-change: transform, opacity;
+  animation: particle-float 12s ease-in-out infinite;
+}
+
+.star-twinkle {
+  will-change: transform, opacity;
+  animation: star-twinkle 3s ease-in-out infinite;
+}
+
+.orb-float {
+  will-change: transform;
+  animation: orb-float 15s ease-in-out infinite;
+}
+
+.cube-spin {
+  will-change: transform, opacity;
+  animation: cube-spin 14s ease-in-out infinite;
+}
