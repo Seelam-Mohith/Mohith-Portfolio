@@ -3,7 +3,7 @@ export const personalData = {
   subtitle: 'CSE Student | AIML | MERN | Cybersecurity | 2× Hackathon Winner',
   intro: 'Passionate developer focused on building intelligent applications, full-stack web solutions, and innovative products that solve real-world problems.',
   about: "I am a Computer Science Engineering student passionate about Artificial Intelligence, Machine Learning, and Full-Stack Development. I enjoy participating in hackathons, building innovative products, and continuously learning new technologies. My interests include MERN Stack Development, AI-powered applications, cloud technologies, and competitive programming.",
-  email: 'mohith.seelam@email.com',
+  email: 'seelammohith2222@gmail.com',
   social: {
     github: 'https://github.com/Seelam-Mohith',
     linkedin: 'https://www.linkedin.com/in/mohith-seelam',

@@ -6,9 +6,9 @@ import { personalData } from '../data/portfolioData'
 
 const socialLinks = [
   { icon: FaEnvelope, label: 'Email', value: personalData.email, href: `mailto:${personalData.email}`, color: '#c084fc' },
-  { icon: FaGithub, label: 'GitHub', value: 'github.com/mohithseelam', href: personalData.social.github, color: '#a855f7' },
-  { icon: FaLinkedin, label: 'LinkedIn', value: 'linkedin.com/in/mohithseelam', href: personalData.social.linkedin, color: '#4a9eff' },
-  { icon: SiLeetcode, label: 'LeetCode', value: 'leetcode.com/mohithseelam', href: personalData.social.leetcode, color: '#ff2d9e' },
+  { icon: FaGithub, label: 'GitHub', value: 'github.com/Seelam-Mohith', href: personalData.social.github, color: '#a855f7' },
+  { icon: FaLinkedin, label: 'LinkedIn', value: 'linkedin.com/mohith-seelam', href: personalData.social.linkedin, color: '#4a9eff' },
+  { icon: SiLeetcode, label: 'LeetCode', value: 'leetcode.com/MohithSeelam', href: personalData.social.leetcode, color: '#ff2d9e' },
 ]
 
 const particles = Array.from({ length: 20 }, (_, i) => ({
