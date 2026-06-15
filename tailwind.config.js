@@ -37,6 +37,7 @@ export default {
         game: ['"Press Start 2P"', 'cursive'],
         display: ['"Orbitron"', 'sans-serif'],
         body: ['"Inter"', 'sans-serif'],
+        accent: ['"Space Grotesk"', 'sans-serif'],
       },
       animation: {
         'float': 'float 3s ease-in-out infinite',

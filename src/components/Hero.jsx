@@ -127,7 +127,7 @@ export default function Hero() {
 
             <motion.p
               variants={fadeUp}
-              className="text-gray-400 font-body text-sm md:text-base leading-relaxed max-w-xl mb-8"
+              className="text-gray-400 font-accent text-sm md:text-base leading-relaxed max-w-xl mb-8"
             >
               {personalData.intro}
             </motion.p>

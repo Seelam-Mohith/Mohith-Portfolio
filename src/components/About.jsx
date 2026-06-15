@@ -91,7 +91,7 @@ export default function About() {
           className="glass neon-border rounded-2xl p-6 md:p-8 mb-12 max-w-4xl mx-auto relative"
         >
           <PixelCorners />
-          <p className="text-gray-300 font-body text-base md:text-lg leading-relaxed">
+          <p className="text-gray-300 font-accent text-sm md:text-base leading-relaxed">
             {personalData.about}
           </p>
         </motion.div>
