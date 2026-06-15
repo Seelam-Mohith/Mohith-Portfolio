@@ -1,6 +1,7 @@
 import { useRef, useState, useCallback } from 'react'
 import { motion } from 'framer-motion'
-import { FaCertificate, FaCalendarAlt, FaExternalLinkAlt } from 'react-icons/fa'
+import { FaCalendarAlt, FaExternalLinkAlt } from 'react-icons/fa'
+import { SiOracle, SiIbm } from 'react-icons/si'
 import { certifications } from '../data/portfolioData'
 
 const accentBars = [
@@ -64,7 +65,7 @@ function CertificationCard({ cert, index }) {
   }, [])
 
   return (
-    <motion.div variants={cardVariants} className="group">
+    <motion.div variants={cardVariants} className="group h-full">
       <motion.div
         ref={cardRef}
         onMouseMove={handleMouseMove}
@@ -75,13 +76,13 @@ function CertificationCard({ cert, index }) {
         }}
         transition={{ type: 'spring', stiffness: 200, damping: 20 }}
         style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
-        className="relative rounded-2xl overflow-hidden cursor-default"
+        className="relative rounded-2xl overflow-hidden cursor-default h-full flex flex-col"
       >
         {/* Accent bar at top */}
-        <div className="relative h-2 w-full" style={{ background: accent }} />
+        <div className="relative h-2 w-full shrink-0" style={{ background: accent }} />
 
         <div
-          className="relative transition-all duration-500"
+          className="relative transition-all duration-500 flex-1 flex flex-col"
           style={{
             background: `rgba(26, 26, 46, ${isHovered ? 0.7 : 0.5})`,
             backdropFilter: 'blur(12px)',
@@ -105,8 +106,8 @@ function CertificationCard({ cert, index }) {
             }}
           />
 
-          <div className="p-6 md:p-7 flex flex-col items-center text-center gap-4">
-            {/* Badge/ribbon icon */}
+          <div className="p-6 md:p-7 flex flex-col items-center text-center gap-4 flex-1">
+            {/* Org Logo */}
             <motion.div
               animate={isHovered ? { rotate: [0, -10, 10, -5, 5, 0], scale: 1.15 } : {}}
               transition={{ duration: 0.6 }}
@@ -114,9 +115,20 @@ function CertificationCard({ cert, index }) {
             >
               <div
                 className="absolute inset-0 blur-xl opacity-40 transition-opacity duration-300"
-                style={{ background: '#fbbf24', borderRadius: '50%' }}
+                style={{ background: cert.logo === 'oracle' ? '#f80000' : cert.logo === 'ibm' ? '#0062ff' : '#a855f7', borderRadius: '50%' }}
               />
-              <FaCertificate className="text-4xl relative" style={{ color: '#fbbf24', filter: 'drop-shadow(0 0 8px rgba(251,191,36,0.5))' }} />
+              {cert.logo === 'oracle' ? (
+                <SiOracle className="text-5xl relative" style={{ color: '#f80000', filter: 'drop-shadow(0 0 8px rgba(248,0,0,0.5))' }} />
+              ) : cert.logo === 'ibm' ? (
+                <SiIbm className="text-5xl relative" style={{ color: '#0062ff', filter: 'drop-shadow(0 0 8px rgba(0,98,255,0.5))' }} />
+              ) : (
+                <img
+                  src="/nptellogo-Photoroom.png"
+                  alt="NPTEL"
+                  className="relative w-14 h-14 object-contain"
+                  style={{ filter: 'drop-shadow(0 0 8px rgba(168,85,247,0.5))' }}
+                />
+              )}
             </motion.div>
 
             {/* Certificate name */}
@@ -150,7 +162,7 @@ function CertificationCard({ cert, index }) {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs md:text-sm font-display font-bold tracking-wider text-white transition-all duration-300"
+              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs md:text-sm font-display font-bold tracking-wider text-white transition-all duration-300 mt-auto"
               style={{
                 background: 'linear-gradient(135deg, rgba(168,85,247,0.2), rgba(124,58,237,0.1))',
                 border: '1px solid rgba(168,85,247,0.3)',
@@ -218,11 +230,42 @@ export default function Certifications() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 items-stretch"
         >
           {certifications.map((cert, index) => (
             <CertificationCard key={cert.name} cert={cert} index={index} />
           ))}
+        </motion.div>
+
+        <motion.div
+          className="text-center mt-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+        >
+          <a
+            href="https://www.linkedin.com/in/mohith-seelam/details/certifications/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-display font-bold tracking-wider transition-all duration-300"
+            style={{
+              color: '#c084fc',
+              border: '1px solid rgba(168,85,247,0.4)',
+              background: 'rgba(168,85,247,0.08)',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(168,85,247,0.2)'
+              e.currentTarget.style.boxShadow = '0 0 30px rgba(168,85,247,0.3)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'rgba(168,85,247,0.08)'
+              e.currentTarget.style.boxShadow = 'none'
+            }}
+          >
+            <FaExternalLinkAlt className="text-xs" />
+            <span>For more Certifications</span>
+          </a>
         </motion.div>
       </div>
     </section>
