@@ -170,9 +170,10 @@
   50% { opacity: 1; transform: scale(1.2); }
 }
 
-@keyframes orb-float {
-  0%, 100% { transform: translateY(0px) scale(1); }
-  50% { transform: translateY(-30px) scale(1.05); }
+@keyframes orb-pulse {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.28; }
+  33% { transform: scale(1.2) rotate(120deg); opacity: 0.5; }
+  66% { transform: scale(0.85) rotate(240deg); opacity: 0.2; }
 }
 
 @keyframes cube-spin {
@@ -181,6 +182,11 @@
   50% { transform: translateY(-5px) rotate(180deg); opacity: 0.4; }
   75% { transform: translateY(-20px) rotate(270deg); opacity: 0.6; }
   100% { transform: translateY(0px) rotate(360deg); opacity: 0.3; }
+}
+
+.orb-float {
+  will-change: transform, opacity, filter;
+  animation: orb-pulse 12s ease-in-out infinite;
 }
 
 .particle-float {
@@ -194,8 +200,8 @@
 }
 
 .orb-float {
-  will-change: transform;
-  animation: orb-float 15s ease-in-out infinite;
+  will-change: transform, opacity, filter;
+  animation: orb-pulse 12s ease-in-out infinite;
 }
 
 .cube-spin {
