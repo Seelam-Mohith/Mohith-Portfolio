@@ -289,6 +289,24 @@ export default function Projects() {
             )
           })}
         </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="text-center mt-16"
+        >
+          <a
+            href="https://github.com/Seelam-Mohith"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-6 py-3 rounded-xl text-sm font-display font-bold tracking-wider text-purple-300 border border-purple-500/30 hover:border-purple-400/60 hover:text-white transition-all duration-300"
+          >
+            <FaGithub className="text-lg" />
+            For more projects, visit my GitHub profile
+          </a>
+        </motion.div>
       </div>
     </section>
   )
