@@ -161,23 +161,23 @@ export const projects = [
 
 export const experiences = [
   {
-    role: 'Full-Stack Developer Intern',
-    organization: 'Tech Company',
-    duration: 'Jun 2025 - Aug 2025',
+    role: 'Intern',
+    organization: 'Mitt Arv',
+    duration: 'May 2026 – June 2026',
     responsibilities: [
-      'Built responsive web applications using React.js and Node.js',
-      'Developed RESTful APIs serving 10k+ daily requests',
-      'Implemented authentication and authorization systems',
+      'Gained hands-on experience with Jira, understanding project workflows, task management, sprint planning, and collaborative development practices.',
+      'Explored and analyzed key projects across Cybersecurity, Artificial Intelligence, and MERN Stack domains to understand real-world development processes.',
+      'Studied React and Redux implementation patterns, focusing on state management, component architecture, and scalable frontend development.',
+      'Contributed to assigned tasks related to Movie Recommendation Systems and Project Management Systems, assisting in feature development and technical research.',
     ],
     achievements: [
-      'Reduced API response time by 40%',
-      'Awarded Best Intern Project',
+      'Key Skills: Jira, React.js, Redux, MERN Stack, Artificial Intelligence, Cybersecurity, Agile Development',
     ],
   },
   {
     role: 'General Secretary',
     organization: 'COSC – Technical Club',
-    duration: '2026 – Present',
+    duration: 'Dec 2025 – Present',
     responsibilities: [
       'Led the organization of Hacktoberfest, managing a team of 15 members and coordinating an event with 1,700+ participants worldwide and 350+ teams. Website: https://cbit-hacktoberfest25.vercel.app/',
       'Organized and delivered Global Open Source Awareness Sessions, encouraging students and developers to contribute to open-source projects and communities.',
@@ -191,7 +191,7 @@ export const experiences = [
   {
     role: 'Junior Developer',
     organization: 'COSC – Technical Club',
-    duration: '2025 – 2026',
+    duration: 'Jan 2025 – Dec 2025',
     responsibilities: [
       'Contributed to the development and maintenance of the HackWeek Website, which supported 900+ participants. Website: https://cosc-hackweek.vercel.app/',
       'Assisted in organizing and conducting Git & GitHub workshops, helping students learn version control and collaborative development practices.',
