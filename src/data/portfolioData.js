@@ -9,7 +9,8 @@ export const personalData = {
     linkedin: 'https://www.linkedin.com/in/mohith-seelam',
     leetcode: 'https://leetcode.com/MohithSeelam',
   },
-  resumeUrl: '#',
+  // TODO: Replace with actual resume PDF link (e.g., '/resume.pdf' or Google Drive link)
+  resumeUrl: 'https://drive.google.com/file/d/1F3htDIqYH95Wcf4r9I4XbnvhHZxjlRp4/view',
 }
 
 export const education = {
@@ -89,7 +90,7 @@ export const projects = [
     title: 'Briefly AI',
     description: 'An AI-driven video summarization platform that transforms lengthy videos into concise and meaningful text summaries. Built using NLP techniques and Azure AI services, it enables users to quickly extract key insights and save time on content consumption.',
     tech: ['Django', 'Azure AI Services', 'SpaCy', 'Scikit-learn', 'HTML', 'CSS', 'JavaScript'],
-    github: 'https://github.com/Seelam-Mohith/HTF24-Team-025',
+    github: 'https://github.com/Seelam-Mohith/BrieflyAI',
     live: '#',
     image: null,
   },
@@ -233,7 +234,7 @@ export const hackathons = [
       'Collaborated with team members to design, develop, and present a functional prototype under tight deadlines.',
     ],
     certificate: 'https://cbitosc.github.io/verify24/hfestM/?id=mohithHTF24M0010',
-    github: '#',
+    github: 'https://github.com/Seelam-Mohith/BrieflyAI',
   },
 ]
 
