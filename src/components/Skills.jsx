@@ -104,13 +104,13 @@ const PixelCorner = () => (
   </>
 )
 
-const ProgressBar = ({ color, index }) => (
+const ProgressBar = ({ color, proficiency }) => (
   <div className="w-full h-1 bg-dark-300 rounded-full overflow-hidden mt-3">
     <motion.div
       initial={{ width: 0 }}
-      whileInView={{ width: `${60 + Math.sin(index * 1.5) * 30 + 10}%` }}
+      whileInView={{ width: `${proficiency}%` }}
       viewport={{ once: true }}
-      transition={{ duration: 1, delay: 0.3 + index * 0.05, ease: 'easeOut' }}
+      transition={{ duration: 1, delay: 0.3, ease: 'easeOut' }}
       className="h-full rounded-full"
       style={{
         background: `linear-gradient(90deg, ${color}, ${color}88)`,
@@ -262,8 +262,8 @@ export default function Skills() {
                     {skill.name}
                   </span>
 
-                  {/* Decorative progress bar */}
-                  <ProgressBar color={accent} index={i} />
+                  {/* Proficiency bar */}
+                  <ProgressBar color={accent} proficiency={skill.proficiency} />
                 </motion.div>
               )
             })}

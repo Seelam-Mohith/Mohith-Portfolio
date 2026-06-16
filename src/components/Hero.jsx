@@ -68,7 +68,7 @@ export default function Hero() {
     <section
       id="hero"
       ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-16"
     >
       {/* Animated background glow */}
       <div className="absolute inset-0 pointer-events-none">
@@ -227,7 +227,7 @@ export default function Hero() {
               </motion.div>
 
               {/* Profile image */}
-              <div className="relative pixel-border rounded-2xl p-1 -mt-12">
+              <div className="relative pixel-border rounded-2xl p-1 lg:-mt-12">
                 <div className="relative bg-dark-400/90 rounded-2xl p-8 backdrop-blur-sm overflow-hidden border border-purple-500/10">
                   <motion.img
                     src="/mohith.png"
