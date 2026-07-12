@@ -107,7 +107,7 @@ export const projects = [
     description: 'An AI-powered cybersecurity platform that detects phishing emails, malicious URLs, smishing attacks, and network intrusions using multiple machine learning models. It provides real-time threat analysis to enhance digital security and cyber awareness.',
     tech: ['React', 'Python', 'Flask', 'LinearSVC', 'Generative AI'],
     github: 'https://github.com/Seelam-Mohith/QuantShield',
-    live: '#',
+    live: 'https://quantshield.vercel.app',
     image: null,
   },
   {
