@@ -5,7 +5,7 @@ A personal portfolio website built with modern web technologies.
 ## Technologies Used
 
 - **React** - Frontend library
-
+- **Vite** - Build tool and development server
 - **Tailwind CSS** - Utility-first CSS framework
 - **Framer Motion** - Animation library
 - **EmailJS** - Email service for contact form
@@ -29,7 +29,7 @@ npm run preview
 
 ## View
 
-Check out the live portfolio website here: [View Portfolio](https://your-portfolio-url.com)
+Check out the live portfolio website here: [View Portfolio](https://mohiths-portfolio.vercel.app)
 
 ## Project Structure
 
