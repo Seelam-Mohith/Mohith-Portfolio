@@ -99,7 +99,7 @@ export const projects = [
     description: 'A competitive coding platform that helps friends stay consistent and motivated by tracking their LeetCode and GitHub performance. Features dynamic leaderboards, progress analytics, and secure authentication to foster healthy competition and collaborative growth.',
     tech: ['React', 'Node.js', 'MongoDB', 'Express.js', 'JWT Authentication'],
     github: 'https://github.com/Seelam-Mohith/DevSync',
-    live: 'https://devsyncc.vercel.app',
+    live: 'https://devsyncx.netlify.app',
     image: null,
   },
   {
