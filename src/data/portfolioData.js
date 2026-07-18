@@ -219,7 +219,7 @@ export const hackathons = [
       'Designed cross-platform mobile interface with Flutter and Firebase for real-time data sync.',
     ],
     certificate: 'https://drive.google.com/file/d/16KNgleS4-BWNru21-u4PnqFkwwl5VKNV/view',
-    github: '#',
+    github: 'https://github.com/Seelam-Mohith/AI-TrafficOptimization',
   },
   {
     name: 'CBIT Hacktoberfest Hackathon',
