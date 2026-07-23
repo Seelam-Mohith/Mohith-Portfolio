@@ -66,9 +66,10 @@ function LeetCodeStats() {
   }, [])
 
   const accuracy = useMemo(() => {
-    if (!stats) return '—'
-    const total = stats.totalSubmissions?.[0]?.submissions || 1
-    return ((stats.totalSolved / total) * 100).toFixed(1)
+    if (!stats?.matchedUserStats) return '—'
+    const accepted = stats.matchedUserStats.acSubmissionNum?.[0]?.submissions || 0
+    const total = stats.matchedUserStats.totalSubmissionNum?.[0]?.submissions || 1
+    return ((accepted / total) * 100).toFixed(1)
   }, [stats])
 
   const streak = useMemo(() => {
