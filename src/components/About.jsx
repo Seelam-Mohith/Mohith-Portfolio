@@ -89,21 +89,43 @@ function LeetCodeStats() {
     return count || '—'
   }, [stats])
 
-  const heatmap = useMemo(() => {
+  const monthBlocks = useMemo(() => {
     if (!stats?.submissionCalendar) return []
     const cal = stats.submissionCalendar
     const DAY = 86400
     const today = Math.floor(Date.now() / 1000 / DAY) * DAY
-    const days = []
-    for (let i = 139; i >= 0; i--) {
-      const ts = today - i * DAY
-      days.push({ count: cal[ts] || 0 })
+
+    const blocks = []
+    for (let m = 7; m >= 0; m--) {
+      const ref = new Date()
+      ref.setMonth(ref.getMonth() - m, 1)
+      const year = ref.getFullYear()
+      const month = ref.getMonth()
+      const name = ref.toLocaleString('default', { month: 'short' })
+
+      const firstDay = new Date(year, month, 1)
+      const lastDay = new Date(year, month + 1, 0)
+      const startTs = Math.floor(firstDay.getTime() / 1000 / DAY) * DAY
+      const endTs = Math.floor(lastDay.getTime() / 1000 / DAY) * DAY
+
+      const startDow = firstDay.getDay()
+      const daysInMonth = lastDay.getDate()
+
+      const cells = []
+      for (let i = 0; i < startDow; i++) cells.push(null)
+      for (let d = 1; d <= daysInMonth; d++) {
+        const ts = startTs + (d - 1) * DAY
+        cells.push({ day: d, count: cal[ts] || 0 })
+      }
+
+      const weeks = []
+      for (let i = 0; i < cells.length; i += 7) {
+        weeks.push(cells.slice(i, i + 7))
+      }
+
+      blocks.push({ name, year, weeks })
     }
-    const weeks = []
-    for (let i = 0; i < days.length; i += 7) {
-      weeks.push(days.slice(i, i + 7))
-    }
-    return weeks
+    return blocks
   }, [stats])
 
   const maxCount = useMemo(() => {
@@ -200,20 +222,23 @@ function LeetCodeStats() {
               <span className="text-[10px] text-gray-500">More</span>
             </div>
           </div>
-          <div className="flex gap-[3px]">
-            {heatmap.map((week, wi) => (
-              <div key={wi} className="flex flex-col gap-[3px]">
-                {week.map((day, di) => (
-                  <motion.div
-                    key={di}
-                    className={`w-3 h-3 rounded-[3px] ${getHeatColor(day.count)} transition-colors`}
-                    initial={{ opacity: 0, scale: 0 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: (wi * 7 + di) * 0.003, duration: 0.15 }}
-                    title={`${day.count} submissions`}
-                  />
-                ))}
+          <div className="flex items-end gap-1">
+            {monthBlocks.map((block, bi) => (
+              <div key={bi} className={`flex flex-col ${bi > 0 ? 'border-l border-purple-500/15 pl-1' : ''}`}>
+                <div className="text-[10px] text-gray-500 font-body mb-1 text-center">{block.name}</div>
+                <div className="flex gap-[3px]">
+                  {block.weeks.map((week, wi) => (
+                    <div key={wi} className="flex flex-col gap-[3px]">
+                      {week.map((cell, di) => (
+                        <div
+                          key={di}
+                          className={`w-2.5 h-2.5 rounded-[2px] ${cell ? getHeatColor(cell.count) : 'bg-transparent'} transition-colors`}
+                          title={cell ? `${cell.day} — ${cell.count} submissions` : ''}
+                        />
+                      ))}
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
