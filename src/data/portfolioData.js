@@ -78,7 +78,7 @@ export const skills = {
     { name: 'Git', icon: 'FaGitAlt', color: '#F05032', proficiency: 98 },
     { name: 'GitHub', icon: 'FaGithub', color: '#ffffff', proficiency: 98 },
     { name: 'VS Code', icon: 'SiVisualstudiocode', color: '#007ACC', proficiency: 95 },
-    { name: 'Vercel', icon: 'SiVercel', color: '#000000', proficiency: 90 },
+    { name: 'Vercel', icon: 'SiVercel', color: '#ffffff', proficiency: 90 },
     { name: 'Vite', icon: 'SiVite', color: '#646CFF', proficiency: 80 },
     { name: 'Linux', icon: 'SiLinux', color: '#FCC624', proficiency: 65 },
     { name: 'Figma', icon: 'SiFigma', color: '#F24E1E', proficiency: 95 },
