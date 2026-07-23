@@ -42,7 +42,6 @@ const PixelCorners = () => (
     <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-purple-500/60" />
     <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-purple-500/60" />
     <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-purple-500/60" />
-    {/* Extra pixel blocks for 8-bit feel */}
     <div className="absolute top-0 left-0 w-1.5 h-1.5 bg-purple-400/40" />
     <div className="absolute top-0 right-0 w-1.5 h-1.5 bg-purple-400/40" />
     <div className="absolute bottom-0 left-0 w-1.5 h-1.5 bg-purple-400/40" />
@@ -55,6 +54,173 @@ const IconBox = ({ icon: Icon }) => (
     <Icon />
   </div>
 )
+
+function LeetCodeStats() {
+  const [stats, setStats] = useState(null)
+
+  useEffect(() => {
+    fetch('https://leetcode-stats-api.vercel.app/MohithSeelam')
+      .then(res => res.json())
+      .then(setStats)
+      .catch(() => {})
+  }, [])
+
+  const accuracy = useMemo(() => {
+    if (!stats) return '—'
+    const total = stats.totalSubmissions?.[0]?.submissions || 1
+    return ((stats.totalSolved / total) * 100).toFixed(1)
+  }, [stats])
+
+  const streak = useMemo(() => {
+    if (!stats?.submissionCalendar) return '—'
+    const cal = stats.submissionCalendar
+    const DAY = 86400
+    const today = Math.floor(Date.now() / 1000 / DAY) * DAY
+    let count = 0
+    let current = today
+    if (!cal[current]) {
+      current -= DAY
+    }
+    while (cal[current]) {
+      count++
+      current -= DAY
+    }
+    return count || '—'
+  }, [stats])
+
+  const heatmap = useMemo(() => {
+    if (!stats?.submissionCalendar) return []
+    const cal = stats.submissionCalendar
+    const DAY = 86400
+    const today = Math.floor(Date.now() / 1000 / DAY) * DAY
+    const days = []
+    for (let i = 139; i >= 0; i--) {
+      const ts = today - i * DAY
+      days.push({ count: cal[ts] || 0 })
+    }
+    const weeks = []
+    for (let i = 0; i < days.length; i += 7) {
+      weeks.push(days.slice(i, i + 7))
+    }
+    return weeks
+  }, [stats])
+
+  const maxCount = useMemo(() => {
+    if (!stats?.submissionCalendar) return 1
+    return Math.max(1, ...Object.values(stats.submissionCalendar).map(Number))
+  }, [stats])
+
+  const getHeatColor = (count) => {
+    if (count === 0) return 'bg-purple-500/5 border border-purple-500/10'
+    const ratio = count / maxCount
+    if (ratio <= 0.25) return 'bg-purple-500/20'
+    if (ratio <= 0.5) return 'bg-purple-500/40'
+    if (ratio <= 0.75) return 'bg-purple-500/60'
+    return 'bg-purple-500/90'
+  }
+
+  return (
+    <motion.div
+      variants={cardVariants}
+      className="glass glass-hover neon-border neon-border-hover rounded-2xl p-6 relative overflow-hidden group md:col-span-2"
+    >
+      <PixelCorners />
+      <div className="flex items-center gap-4 mb-5">
+        <IconBox icon={SiLeetcode} />
+        <h3 className="font-display text-lg text-white font-bold tracking-wide">LeetCode Stats</h3>
+        <a
+          href={personalData.social.leetcode}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ml-auto text-xs text-purple-400/80 bg-purple-500/10 px-3 py-1 rounded hover:bg-purple-500/20 transition-colors"
+        >
+          View Profile →
+        </a>
+      </div>
+
+      <div className="flex flex-col lg:flex-row gap-6">
+        {/* Left: Stats */}
+        <div className="flex-1 space-y-4">
+          <div className="grid grid-cols-3 gap-3">
+            <div className="text-center p-3 rounded-xl bg-purple-500/5 border border-purple-500/10">
+              <div className="flex items-center justify-center gap-2 mb-1">
+                <FaCode className="text-purple-400 text-sm" />
+                <span className="text-2xl font-bold text-white font-display">{stats?.totalSolved ?? '—'}</span>
+              </div>
+              <span className="text-xs text-gray-400 font-body">Solved</span>
+            </div>
+            <div className="text-center p-3 rounded-xl bg-green-500/5 border border-green-500/10">
+              <div className="flex items-center justify-center gap-2 mb-1">
+                <FaPercentage className="text-green-400 text-sm" />
+                <span className="text-2xl font-bold text-green-400 font-display">{accuracy}%</span>
+              </div>
+              <span className="text-xs text-gray-400 font-body">Accuracy</span>
+            </div>
+            <div className="text-center p-3 rounded-xl bg-orange-500/5 border border-orange-500/10">
+              <div className="flex items-center justify-center gap-2 mb-1">
+                <FaFire className="text-orange-400 text-sm" />
+                <span className="text-2xl font-bold text-orange-400 font-display">{streak}</span>
+              </div>
+              <span className="text-xs text-gray-400 font-body">Day Streak</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div className="flex items-center gap-2 text-sm text-gray-300 font-body">
+              <FaMedal className="text-yellow-400" />
+              <span>Ranking: <span className="text-white font-semibold">{stats?.ranking?.toLocaleString() ?? '—'}</span></span>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-gray-300 font-body">
+              <FaTrophy className="text-orange-400" />
+              <span>Contributions: <span className="text-white font-semibold">{stats?.contributionPoint ?? '—'}</span></span>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-gray-300 font-body">
+              <FaFire className="text-red-400" />
+              <span>Languages: <span className="text-white font-semibold">Python, MySQL</span></span>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-gray-300 font-body">
+              <FaStar className="text-purple-400" />
+              <span>Badges: <span className="text-white font-semibold">4</span></span>
+            </div>
+          </div>
+        </div>
+
+        {/* Right: Heatmap */}
+        <div className="flex-1">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-xs text-gray-400 font-body">Submission Activity</span>
+            <div className="flex items-center gap-1 ml-auto">
+              <span className="text-[10px] text-gray-500">Less</span>
+              <div className="w-2.5 h-2.5 rounded-sm bg-purple-500/5 border border-purple-500/10" />
+              <div className="w-2.5 h-2.5 rounded-sm bg-purple-500/20" />
+              <div className="w-2.5 h-2.5 rounded-sm bg-purple-500/40" />
+              <div className="w-2.5 h-2.5 rounded-sm bg-purple-500/60" />
+              <div className="w-2.5 h-2.5 rounded-sm bg-purple-500/90" />
+              <span className="text-[10px] text-gray-500">More</span>
+            </div>
+          </div>
+          <div className="flex gap-[3px]">
+            {heatmap.map((week, wi) => (
+              <div key={wi} className="flex flex-col gap-[3px]">
+                {week.map((day, di) => (
+                  <motion.div
+                    key={di}
+                    className={`w-3 h-3 rounded-[3px] ${getHeatColor(day.count)} transition-colors`}
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: (wi * 7 + di) * 0.003, duration: 0.15 }}
+                    title={`${day.count} submissions`}
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
 
 export default function About() {
   return (
@@ -232,184 +398,8 @@ export default function About() {
             </motion.ul>
           </motion.div>
 
-function LeetCodeStats() {
-  const [stats, setStats] = useState(null)
-
-  useEffect(() => {
-    fetch('https://leetcode-stats-api.vercel.app/MohithSeelam')
-      .then(res => res.json())
-      .then(setStats)
-      .catch(() => {})
-  }, [])
-
-  const accuracy = useMemo(() => {
-    if (!stats) return '—'
-    const total = stats.totalSubmissions?.[0]?.submissions || 1
-    return ((stats.totalSolved / total) * 100).toFixed(1)
-  }, [stats])
-
-  const streak = useMemo(() => {
-    if (!stats?.submissionCalendar) return '—'
-    const cal = stats.submissionCalendar
-    const dates = Object.keys(cal)
-      .map(Number)
-      .sort((a, b) => b - a)
-    if (dates.length === 0) return '—'
-
-    const DAY = 86400
-    const today = Math.floor(Date.now() / 1000 / DAY) * DAY
-    let count = 0
-    let current = today
-
-    // if today has no submission, check yesterday
-    if (!cal[current]) {
-      current -= DAY
-    }
-
-    while (cal[current]) {
-      count++
-      current -= DAY
-    }
-    return count || '—'
-  }, [stats])
-
-  const heatmap = useMemo(() => {
-    if (!stats?.submissionCalendar) return []
-    const cal = stats.submissionCalendar
-    const DAY = 86400
-    const today = Math.floor(Date.now() / 1000 / DAY) * DAY
-    // last 140 days = 20 weeks
-    const days = []
-    for (let i = 139; i >= 0; i--) {
-      const ts = today - i * DAY
-      days.push({ count: cal[ts] || 0 })
-    }
-    // split into weeks (columns)
-    const weeks = []
-    for (let i = 0; i < days.length; i += 7) {
-      weeks.push(days.slice(i, i + 7))
-    }
-    return weeks
-  }, [stats])
-
-  const maxCount = useMemo(() => {
-    if (!stats?.submissionCalendar) return 1
-    return Math.max(1, ...Object.values(stats.submissionCalendar).map(Number))
-  }, [stats])
-
-  const getHeatColor = (count) => {
-    if (count === 0) return 'bg-purple-500/5 border border-purple-500/10'
-    const ratio = count / maxCount
-    if (ratio <= 0.25) return 'bg-purple-500/20'
-    if (ratio <= 0.5) return 'bg-purple-500/40'
-    if (ratio <= 0.75) return 'bg-purple-500/60'
-    return 'bg-purple-500/90'
-  }
-
-  return (
-    <motion.div
-      variants={cardVariants}
-      className="glass glass-hover neon-border neon-border-hover rounded-2xl p-6 relative overflow-hidden group md:col-span-2"
-    >
-      <PixelCorners />
-      <div className="flex items-center gap-4 mb-5">
-        <IconBox icon={SiLeetcode} />
-        <h3 className="font-display text-lg text-white font-bold tracking-wide">LeetCode Stats</h3>
-        <a
-          href={personalData.social.leetcode}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="ml-auto text-xs text-purple-400/80 bg-purple-500/10 px-3 py-1 rounded hover:bg-purple-500/20 transition-colors"
-        >
-          View Profile →
-        </a>
-      </div>
-
-      <div className="flex flex-col lg:flex-row gap-6">
-        {/* Left: Stats */}
-        <div className="flex-1 space-y-4">
-          {/* Solved + Accuracy + Streak */}
-          <div className="grid grid-cols-3 gap-3">
-            <div className="text-center p-3 rounded-xl bg-purple-500/5 border border-purple-500/10">
-              <div className="flex items-center justify-center gap-2 mb-1">
-                <FaCode className="text-purple-400 text-sm" />
-                <span className="text-2xl font-bold text-white font-display">{stats?.totalSolved ?? '—'}</span>
-              </div>
-              <span className="text-xs text-gray-400 font-body">Solved</span>
-            </div>
-            <div className="text-center p-3 rounded-xl bg-green-500/5 border border-green-500/10">
-              <div className="flex items-center justify-center gap-2 mb-1">
-                <FaPercentage className="text-green-400 text-sm" />
-                <span className="text-2xl font-bold text-green-400 font-display">{accuracy}%</span>
-              </div>
-              <span className="text-xs text-gray-400 font-body">Accuracy</span>
-            </div>
-            <div className="text-center p-3 rounded-xl bg-orange-500/5 border border-orange-500/10">
-              <div className="flex items-center justify-center gap-2 mb-1">
-                <FaFire className="text-orange-400 text-sm" />
-                <span className="text-2xl font-bold text-orange-400 font-display">{streak}</span>
-              </div>
-              <span className="text-xs text-gray-400 font-body">Day Streak</span>
-            </div>
-          </div>
-
-          {/* Ranking + Contributions + Languages + Badges */}
-          <div className="grid grid-cols-2 gap-3">
-            <div className="flex items-center gap-2 text-sm text-gray-300 font-body">
-              <FaMedal className="text-yellow-400" />
-              <span>Ranking: <span className="text-white font-semibold">{stats?.ranking?.toLocaleString() ?? '—'}</span></span>
-            </div>
-            <div className="flex items-center gap-2 text-sm text-gray-300 font-body">
-              <FaTrophy className="text-orange-400" />
-              <span>Contributions: <span className="text-white font-semibold">{stats?.contributionPoint ?? '—'}</span></span>
-            </div>
-            <div className="flex items-center gap-2 text-sm text-gray-300 font-body">
-              <FaFire className="text-red-400" />
-              <span>Languages: <span className="text-white font-semibold">Python, MySQL</span></span>
-            </div>
-            <div className="flex items-center gap-2 text-sm text-gray-300 font-body">
-              <FaStar className="text-purple-400" />
-              <span>Badges: <span className="text-white font-semibold">4</span></span>
-            </div>
-          </div>
-        </div>
-
-        {/* Right: Heatmap */}
-        <div className="flex-1">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-xs text-gray-400 font-body">Submission Activity</span>
-            <div className="flex items-center gap-1 ml-auto">
-              <span className="text-[10px] text-gray-500">Less</span>
-              <div className="w-2.5 h-2.5 rounded-sm bg-purple-500/5 border border-purple-500/10" />
-              <div className="w-2.5 h-2.5 rounded-sm bg-purple-500/20" />
-              <div className="w-2.5 h-2.5 rounded-sm bg-purple-500/40" />
-              <div className="w-2.5 h-2.5 rounded-sm bg-purple-500/60" />
-              <div className="w-2.5 h-2.5 rounded-sm bg-purple-500/90" />
-              <span className="text-[10px] text-gray-500">More</span>
-            </div>
-          </div>
-          <div className="flex gap-[3px]">
-            {heatmap.map((week, wi) => (
-              <div key={wi} className="flex flex-col gap-[3px]">
-                {week.map((day, di) => (
-                  <motion.div
-                    key={di}
-                    className={`w-3 h-3 rounded-[3px] ${getHeatColor(day.count)} transition-colors`}
-                    initial={{ opacity: 0, scale: 0 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: (wi * 7 + di) * 0.003, duration: 0.15 }}
-                    title={`${day.count} submissions`}
-                  />
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  )
-}
+          {/* LEETCODE STATS */}
+          <LeetCodeStats />
         </motion.div>
       </div>
     </section>
