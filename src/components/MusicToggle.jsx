@@ -1,12 +1,27 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { FaMusic, FaVolumeMute } from "react-icons/fa";
 
+const audioSrc = "/RUFUS_DU_SOL_-_Break_My_Love_vqMusic_(SkySound.cc).mp3";
+
 export default function MusicToggle() {
   const [playing, setPlaying] = useState(false);
+  const audioRef = useRef(null);
+
+  const toggle = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (playing) {
+      audio.pause();
+    } else {
+      audio.play();
+    }
+    setPlaying((p) => !p);
+  };
 
   return (
     <div className="fixed bottom-8 left-8 z-40 flex items-center gap-2">
+      <audio ref={audioRef} src={audioSrc} loop />
       <motion.div
         className="relative group"
         initial={{ opacity: 0, y: 20 }}
@@ -23,7 +38,7 @@ export default function MusicToggle() {
           </span>
         ))}
         <motion.button
-          onClick={() => setPlaying((p) => !p)}
+          onClick={toggle}
           className="relative w-12 h-12 rounded-full flex items-center justify-center cursor-pointer backdrop-blur-md border"
           style={{
             background: "rgba(168,85,247,0.15)",
