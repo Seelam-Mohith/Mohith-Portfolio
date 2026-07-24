@@ -222,25 +222,29 @@ function LeetCodeStats() {
               <span className="text-[10px] text-gray-500">More</span>
             </div>
           </div>
-          <div className="flex items-end gap-1">
-            {monthBlocks.map((block, bi) => (
-              <div key={bi} className={`flex flex-col ${bi > 0 ? 'border-l border-purple-500/15 pl-1' : ''}`}>
-                <div className="text-[10px] text-gray-500 font-body mb-1 text-center">{block.name}</div>
-                <div className="flex gap-[3px]">
-                  {block.weeks.map((week, wi) => (
-                    <div key={wi} className="flex flex-col gap-[3px]">
-                      {week.map((cell, di) => (
-                        <div
-                          key={di}
-                          className={`w-2.5 h-2.5 rounded-[2px] ${cell ? getHeatColor(cell.count) : 'bg-transparent'} transition-colors`}
-                          title={cell ? `${cell.day} — ${cell.count} submissions` : ''}
-                        />
+          <div className="relative">
+            <div className="overflow-x-auto scrollbar-hide -mx-1 px-1 pb-1">
+              <div className="flex items-end gap-1 min-w-max">
+                {monthBlocks.map((block, bi) => (
+                  <div key={bi} className={`flex flex-col ${bi > 0 ? 'border-l border-purple-500/15 pl-1' : ''}`}>
+                    <div className="text-[10px] text-gray-500 font-body mb-1 text-center">{block.name}</div>
+                    <div className="flex gap-[3px]">
+                      {block.weeks.map((week, wi) => (
+                        <div key={wi} className="flex flex-col gap-[3px]">
+                          {week.map((cell, di) => (
+                            <div
+                              key={di}
+                              className={`w-2.5 h-2.5 rounded-[2px] ${cell ? getHeatColor(cell.count) : 'bg-transparent'} transition-colors`}
+                              title={cell ? `${cell.day} — ${cell.count} submissions` : ''}
+                            />
+                          ))}
+                        </div>
                       ))}
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>

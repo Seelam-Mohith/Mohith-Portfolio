@@ -156,6 +156,15 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @keyframes particle-float {
