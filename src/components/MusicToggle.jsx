@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { FaMusic, FaVolumeMute } from "react-icons/fa";
 
-const audioSrc = "/RUFUS_DU_SOL_-_Break_My_Love_vqMusic_(SkySound.cc).mp3";
+const audioSrc = "/SPIDER-MAN  lofi feat King I Divine.mp3";
 
 export default function MusicToggle() {
   const [playing, setPlaying] = useState(false);
