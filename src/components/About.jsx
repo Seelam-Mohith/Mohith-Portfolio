@@ -292,6 +292,15 @@ function GitHubStats() {
           />
         </div>
       </div>
+
+      <div className="mt-6 rounded-xl overflow-hidden">
+        <img
+          src={`https://gh-heat.anishroy.com/api/${username}/svg?theme=purple&darkMode=true&transparent=true`}
+          alt="GitHub Contribution Heatmap"
+          className="w-full"
+          loading="lazy"
+        />
+      </div>
     </motion.div>
   )
 }
