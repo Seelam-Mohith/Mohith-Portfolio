@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import { motion } from 'framer-motion'
-import { FaGraduationCap, FaHeart, FaRocket, FaGamepad, FaCheck, FaStar, FaCode, FaMedal, FaFire, FaTrophy, FaPercentage } from 'react-icons/fa'
+import { FaGraduationCap, FaHeart, FaRocket, FaGamepad, FaCheck, FaStar, FaCode, FaMedal, FaFire, FaTrophy, FaPercentage, FaGithub } from 'react-icons/fa'
 import { SiLeetcode } from 'react-icons/si'
 import { personalData, education, interests, careerGoals, funFacts } from '../data/portfolioData'
 
@@ -252,6 +252,50 @@ function LeetCodeStats() {
   )
 }
 
+function GitHubStats() {
+  const username = 'Seelam-Mohith'
+
+  return (
+    <motion.div
+      variants={cardVariants}
+      className="glass glass-hover neon-border neon-border-hover rounded-2xl p-6 relative overflow-hidden group md:col-span-2"
+    >
+      <PixelCorners />
+      <div className="flex items-center gap-4 mb-5">
+        <IconBox icon={FaGithub} />
+        <h3 className="font-display text-lg text-white font-bold tracking-wide">GitHub Stats</h3>
+        <a
+          href={`https://github.com/${username}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ml-auto text-xs text-purple-400/80 bg-purple-500/10 px-3 py-1 rounded hover:bg-purple-500/20 transition-colors"
+        >
+          View Profile →
+        </a>
+      </div>
+
+      <div className="flex flex-col lg:flex-row gap-6">
+        <div className="flex-1 min-w-0 rounded-xl overflow-hidden">
+          <img
+            src={`https://github-stats-extended.vercel.app/api?username=${username}&show_icons=true`}
+            alt="GitHub Stats"
+            className="w-full"
+            loading="lazy"
+          />
+        </div>
+        <div className="flex-1 min-w-0 rounded-xl overflow-hidden">
+          <img
+            src={`https://github-stats-extended.vercel.app/api/top-langs/?username=${username}&layout=compact`}
+            alt="Top Languages"
+            className="w-full"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
 export default function About() {
   return (
     <section id="about" className="relative py-20 md:py-32 overflow-hidden">
@@ -430,6 +474,9 @@ export default function About() {
 
           {/* LEETCODE STATS */}
           <LeetCodeStats />
+
+          {/* GITHUB STATS */}
+          <GitHubStats />
         </motion.div>
       </div>
     </section>
