@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import { motion } from 'framer-motion'
-import { FaGraduationCap, FaHeart, FaRocket, FaGamepad, FaCheck, FaStar, FaCode, FaMedal, FaFire, FaTrophy, FaPercentage, FaGithub } from 'react-icons/fa'
+import { FaGraduationCap, FaHeart, FaRocket, FaGamepad, FaCheck, FaStar, FaCode, FaMedal, FaFire, FaTrophy, FaPercentage, FaGithub, FaCodeBranch } from 'react-icons/fa'
 import { SiLeetcode } from 'react-icons/si'
 import { personalData, education, interests, careerGoals, funFacts } from '../data/portfolioData'
 
@@ -252,8 +252,115 @@ function LeetCodeStats() {
   )
 }
 
+const LANG_COLORS = {
+  JavaScript: '#f1e05a', TypeScript: '#3178c6', Python: '#3572A5', HTML: '#e34c26',
+  CSS: '#563d7c', Java: '#b07219', 'C++': '#f34b7d', C: '#555555', Go: '#00ADD8',
+  Rust: '#dea584', Ruby: '#701516', PHP: '#4F5D95', Swift: '#F05138',
+  Kotlin: '#A97BFF', Dart: '#00B4AB', Shell: '#89e051', 'Jupyter Notebook': '#DA5B0B',
+  EJS: '#a91e50', 'Vue': '#41b883', Svelte: '#ff3e00',
+}
+
 function GitHubStats() {
   const username = 'Seelam-Mohith'
+  const token = import.meta.env.VITE_GITHUB_TOKEN
+  const [data, setData] = useState({ pinned: [], contributions: [], totalContributions: 0 })
+  const [userStats, setUserStats] = useState({ stars: 0, repos: 0, followers: 0, following: 0 })
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const headers = token ? { Authorization: `bearer ${token}` } : {}
+
+    const gql = fetch('https://api.github.com/graphql', {
+      method: 'POST',
+      headers: { ...headers, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query: `query($login: String!) {
+          user(login: $login) {
+            pinnedItems(first: 6, types: REPOSITORY) {
+              nodes {
+                ... on Repository {
+                  name url description stargazerCount forkCount
+                  primaryLanguage { name color }
+                }
+              }
+            }
+            contributionsCollection {
+              contributionCalendar {
+                totalContributions
+                weeks {
+                  contributionDays {
+                    contributionCount date
+                  }
+                }
+              }
+            }
+          }
+        }`,
+        variables: { login: username },
+      }),
+    }).then(r => r.json())
+
+    const rest = fetch(`https://api.github.com/users/${username}`)
+      .then(r => r.json())
+
+    Promise.all([gql, rest]).then(([gqlData, user]) => {
+      const u = gqlData?.data?.user
+      if (u) {
+        const weeks = u.contributionsCollection?.contributionCalendar?.weeks || []
+        const days = weeks.flatMap(w => w.contributionDays)
+        setData({
+          pinned: u.pinnedItems?.nodes || [],
+          contributions: days,
+          totalContributions: u.contributionsCollection?.contributionCalendar?.totalContributions || 0,
+        })
+      }
+      if (user) {
+        setUserStats({
+          stars: user.public_repos,
+          repos: user.public_repos,
+          followers: user.followers || 0,
+          following: user.following || 0,
+        })
+      }
+    }).catch(() => {}).finally(() => setLoading(false))
+  }, [token])
+
+  const maxContrib = useMemo(() => {
+    return Math.max(1, ...data.contributions.map(d => d.contributionCount))
+  }, [data.contributions])
+
+  const getHeatColor = (count) => {
+    if (count === 0) return 'bg-purple-500/5 border border-purple-500/10'
+    const ratio = count / maxContrib
+    if (ratio <= 0.25) return 'bg-purple-500/20'
+    if (ratio <= 0.5) return 'bg-purple-500/40'
+    if (ratio <= 0.75) return 'bg-purple-500/60'
+    return 'bg-purple-500/90'
+  }
+
+  const monthBlocks = useMemo(() => {
+    const weeks = []
+    for (let i = 0; i < data.contributions.length; i += 7) {
+      weeks.push(data.contributions.slice(i, i + 7))
+    }
+    const blocks = []
+    let currentMonth = -1
+    for (const week of weeks) {
+      const firstDay = week[0]
+      if (!firstDay) continue
+      const d = new Date(firstDay.date)
+      const m = d.getMonth()
+      if (m !== currentMonth) {
+        currentMonth = m
+        blocks.push({
+          name: d.toLocaleString('default', { month: 'short' }),
+          weeks: [],
+        })
+      }
+      blocks[blocks.length - 1].weeks.push(week)
+    }
+    return blocks
+  }, [data.contributions])
 
   return (
     <motion.div
@@ -274,32 +381,107 @@ function GitHubStats() {
         </a>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-6">
-        <div className="flex-1 min-w-0 rounded-xl overflow-hidden">
-          <img
-            src={`https://github-stats-extended.vercel.app/api?username=${username}&show_icons=true`}
-            alt="GitHub Stats"
-            className="w-full"
-            loading="lazy"
-          />
+      {/* Stats Row */}
+      <div className="grid grid-cols-3 gap-3 mb-5">
+        <div className="text-center p-3 rounded-xl bg-purple-500/5 border border-purple-500/10">
+          <div className="flex items-center justify-center gap-2 mb-1">
+            <FaCode className="text-purple-400 text-sm" />
+            <span className="text-2xl font-bold text-white font-display">{userStats.repos}</span>
+          </div>
+          <span className="text-xs text-gray-400 font-body">Repos</span>
         </div>
-        <div className="flex-1 min-w-0 rounded-xl overflow-hidden">
-          <img
-            src={`https://github-stats-extended.vercel.app/api/top-langs/?username=${username}&layout=compact`}
-            alt="Top Languages"
-            className="w-full"
-            loading="lazy"
-          />
+        <div className="text-center p-3 rounded-xl bg-green-500/5 border border-green-500/10">
+          <div className="flex items-center justify-center gap-2 mb-1">
+            <FaStar className="text-green-400 text-sm" />
+            <span className="text-2xl font-bold text-green-400 font-display">{userStats.followers}</span>
+          </div>
+          <span className="text-xs text-gray-400 font-body">Followers</span>
+        </div>
+        <div className="text-center p-3 rounded-xl bg-orange-500/5 border border-orange-500/10">
+          <div className="flex items-center justify-center gap-2 mb-1">
+            <FaFire className="text-orange-400 text-sm" />
+            <span className="text-2xl font-bold text-orange-400 font-display">{data.totalContributions}</span>
+          </div>
+          <span className="text-xs text-gray-400 font-body">Contributions</span>
         </div>
       </div>
 
-      <div className="mt-6 rounded-xl overflow-hidden">
-        <img
-          src={`https://gh-heat.anishroy.com/api/${username}/svg?theme=purple&darkMode=true&transparent=true`}
-          alt="GitHub Contribution Heatmap"
-          className="w-full"
-          loading="lazy"
-        />
+      {/* Pinned Repos */}
+      <div className="mb-5">
+        <div className="text-xs text-gray-400 font-body mb-2">Pinned Repos</div>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+          {data.pinned.map((repo) => (
+            <a
+              key={repo.name}
+              href={repo.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block p-2.5 rounded-lg bg-purple-500/5 border border-purple-500/10 hover:bg-purple-500/15 hover:border-purple-500/30 transition-all group/repo"
+            >
+              <div className="text-xs text-white font-semibold truncate mb-1 group-hover/repo:text-purple-300 transition-colors">{repo.name}</div>
+              {repo.description && (
+                <div className="text-[10px] text-gray-500 line-clamp-2 mb-1.5 leading-relaxed">{repo.description}</div>
+              )}
+              <div className="flex items-center gap-3">
+                {repo.primaryLanguage && (
+                  <span className="flex items-center gap-1 text-[10px] text-gray-400">
+                    <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: repo.primaryLanguage.color || '#8b5cf6' }} />
+                    {repo.primaryLanguage.name}
+                  </span>
+                )}
+                <span className="flex items-center gap-1 text-[10px] text-gray-400">
+                  <FaStar className="text-[8px] text-yellow-400" /> {repo.stargazerCount}
+                </span>
+                <span className="flex items-center gap-1 text-[10px] text-gray-400">
+                  <FaCodeBranch className="text-[8px]" /> {repo.forkCount}
+                </span>
+              </div>
+            </a>
+          ))}
+          {!loading && data.pinned.length === 0 && (
+            <div className="col-span-2 md:col-span-3 text-xs text-gray-500 text-center py-4">
+              Add a VITE_GITHUB_TOKEN to .env to show pinned repos
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Contribution Heatmap */}
+      <div>
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-xs text-gray-400 font-body">Contribution Activity</span>
+          <div className="flex items-center gap-1 ml-auto">
+            <span className="text-[10px] text-gray-500">Less</span>
+            <div className="w-2.5 h-2.5 rounded-sm bg-purple-500/5 border border-purple-500/10" />
+            <div className="w-2.5 h-2.5 rounded-sm bg-purple-500/20" />
+            <div className="w-2.5 h-2.5 rounded-sm bg-purple-500/40" />
+            <div className="w-2.5 h-2.5 rounded-sm bg-purple-500/60" />
+            <div className="w-2.5 h-2.5 rounded-sm bg-purple-500/90" />
+            <span className="text-[10px] text-gray-500">More</span>
+          </div>
+        </div>
+        <div className="overflow-x-auto scrollbar-hide -mx-1 px-1 pb-1">
+          <div className="flex items-end gap-1 min-w-max">
+            {monthBlocks.map((block, bi) => (
+              <div key={bi} className={`flex flex-col ${bi > 0 ? 'border-l border-purple-500/15 pl-1' : ''}`}>
+                <div className="text-[10px] text-gray-500 font-body mb-1 text-center">{block.name}</div>
+                <div className="flex gap-[3px]">
+                  {block.weeks.map((week, wi) => (
+                    <div key={wi} className="flex flex-col gap-[3px]">
+                      {week.map((day, di) => (
+                        <div
+                          key={di}
+                          className={`w-2.5 h-2.5 rounded-[2px] ${getHeatColor(day.contributionCount)} transition-colors`}
+                          title={`${day.contributionCount} contributions on ${day.date}`}
+                        />
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </motion.div>
   )
