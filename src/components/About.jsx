@@ -416,24 +416,24 @@ function GitHubStats() {
               href={repo.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="block p-2.5 rounded-lg bg-purple-500/5 border border-purple-500/10 hover:bg-purple-500/15 hover:border-purple-500/30 transition-all group/repo"
+              className="block p-3.5 rounded-lg bg-purple-500/5 border border-purple-500/10 hover:bg-purple-500/15 hover:border-purple-500/30 transition-all group/repo"
             >
-              <div className="text-xs text-white font-semibold truncate mb-1 group-hover/repo:text-purple-300 transition-colors">{repo.name}</div>
+              <div className="text-sm text-white font-semibold truncate mb-1.5 group-hover/repo:text-purple-300 transition-colors">{repo.name}</div>
               {repo.description && (
-                <div className="text-[10px] text-gray-500 line-clamp-2 mb-1.5 leading-relaxed">{repo.description}</div>
+                <div className="text-xs text-gray-500 line-clamp-2 mb-2 leading-relaxed">{repo.description}</div>
               )}
               <div className="flex items-center gap-3">
                 {repo.primaryLanguage && (
-                  <span className="flex items-center gap-1 text-[10px] text-gray-400">
-                    <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: repo.primaryLanguage.color || '#8b5cf6' }} />
+                  <span className="flex items-center gap-1 text-xs text-gray-400">
+                    <span className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: repo.primaryLanguage.color || '#8b5cf6' }} />
                     {repo.primaryLanguage.name}
                   </span>
                 )}
-                <span className="flex items-center gap-1 text-[10px] text-gray-400">
-                  <FaStar className="text-[8px] text-yellow-400" /> {repo.stargazerCount}
+                <span className="flex items-center gap-1 text-xs text-gray-400">
+                  <FaStar className="text-[10px] text-yellow-400" /> {repo.stargazerCount}
                 </span>
-                <span className="flex items-center gap-1 text-[10px] text-gray-400">
-                  <FaCodeBranch className="text-[8px]" /> {repo.forkCount}
+                <span className="flex items-center gap-1 text-xs text-gray-400">
+                  <FaCodeBranch className="text-[10px]" /> {repo.forkCount}
                 </span>
               </div>
             </a>
