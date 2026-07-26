@@ -365,81 +365,81 @@ function GitHubStats() {
   return (
     <motion.div
       variants={cardVariants}
-      className="glass glass-hover neon-border neon-border-hover rounded-2xl p-6 relative overflow-hidden group md:col-span-2"
+      className="glass glass-hover neon-border neon-border-hover rounded-2xl p-4 md:p-6 relative overflow-hidden group md:col-span-2"
     >
       <PixelCorners />
-      <div className="flex items-center gap-4 mb-5">
+      <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-5">
         <IconBox icon={FaGithub} />
-        <h3 className="font-display text-lg text-white font-bold tracking-wide">GitHub Stats</h3>
+        <h3 className="font-display text-base md:text-lg text-white font-bold tracking-wide">GitHub Stats</h3>
         <a
           href={`https://github.com/${username}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="ml-auto text-xs text-purple-400/80 bg-purple-500/10 px-3 py-1 rounded hover:bg-purple-500/20 transition-colors"
+          className="ml-auto text-[10px] md:text-xs text-purple-400/80 bg-purple-500/10 px-2 md:px-3 py-1 rounded hover:bg-purple-500/20 transition-colors"
         >
           View Profile →
         </a>
       </div>
 
       {/* Stats Row */}
-      <div className="grid grid-cols-3 gap-3 mb-5">
-        <div className="text-center p-3 rounded-xl bg-purple-500/5 border border-purple-500/10">
-          <div className="flex items-center justify-center gap-2 mb-1">
-            <FaCode className="text-purple-400 text-sm" />
-            <span className="text-2xl font-bold text-white font-display">{userStats.repos}</span>
+      <div className="grid grid-cols-3 gap-2 md:gap-3 mb-4 md:mb-5">
+        <div className="text-center p-2 md:p-3 rounded-xl bg-purple-500/5 border border-purple-500/10">
+          <div className="flex items-center justify-center gap-1.5 md:gap-2 mb-1">
+            <FaCode className="text-purple-400 text-xs md:text-sm" />
+            <span className="text-lg md:text-2xl font-bold text-white font-display">{userStats.repos}</span>
           </div>
-          <span className="text-xs text-gray-400 font-body">Repos</span>
+          <span className="text-[10px] md:text-xs text-gray-400 font-body">Repos</span>
         </div>
-        <div className="text-center p-3 rounded-xl bg-green-500/5 border border-green-500/10">
-          <div className="flex items-center justify-center gap-2 mb-1">
-            <FaStar className="text-green-400 text-sm" />
-            <span className="text-2xl font-bold text-green-400 font-display">{userStats.followers}</span>
+        <div className="text-center p-2 md:p-3 rounded-xl bg-green-500/5 border border-green-500/10">
+          <div className="flex items-center justify-center gap-1.5 md:gap-2 mb-1">
+            <FaStar className="text-green-400 text-xs md:text-sm" />
+            <span className="text-lg md:text-2xl font-bold text-green-400 font-display">{userStats.followers}</span>
           </div>
-          <span className="text-xs text-gray-400 font-body">Followers</span>
+          <span className="text-[10px] md:text-xs text-gray-400 font-body">Followers</span>
         </div>
-        <div className="text-center p-3 rounded-xl bg-orange-500/5 border border-orange-500/10">
-          <div className="flex items-center justify-center gap-2 mb-1">
-            <FaFire className="text-orange-400 text-sm" />
-            <span className="text-2xl font-bold text-orange-400 font-display">{data.totalContributions}</span>
+        <div className="text-center p-2 md:p-3 rounded-xl bg-orange-500/5 border border-orange-500/10">
+          <div className="flex items-center justify-center gap-1.5 md:gap-2 mb-1">
+            <FaFire className="text-orange-400 text-xs md:text-sm" />
+            <span className="text-lg md:text-2xl font-bold text-orange-400 font-display">{data.totalContributions}</span>
           </div>
-          <span className="text-xs text-gray-400 font-body">Contributions</span>
+          <span className="text-[10px] md:text-xs text-gray-400 font-body">Contributions</span>
         </div>
       </div>
 
       {/* Pinned Repos */}
-      <div className="mb-5">
-        <div className="text-xs text-gray-400 font-body mb-2">Pinned Repos</div>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+      <div className="mb-4 md:mb-5">
+        <div className="text-[10px] md:text-xs text-gray-400 font-body mb-2">Pinned Repos</div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
           {data.pinned.map((repo) => (
             <a
               key={repo.name}
               href={repo.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="block p-3.5 rounded-lg bg-purple-500/5 border border-purple-500/10 hover:bg-purple-500/15 hover:border-purple-500/30 transition-all group/repo"
+              className="block p-3 md:p-3.5 rounded-lg bg-purple-500/5 border border-purple-500/10 hover:bg-purple-500/15 hover:border-purple-500/30 transition-all group/repo"
             >
-              <div className="text-sm text-white font-semibold truncate mb-1.5 group-hover/repo:text-purple-300 transition-colors">{repo.name}</div>
+              <div className="text-xs md:text-sm text-white font-semibold truncate mb-1.5 group-hover/repo:text-purple-300 transition-colors">{repo.name}</div>
               {repo.description && (
-                <div className="text-xs text-gray-500 line-clamp-2 mb-2 leading-relaxed">{repo.description}</div>
+                <div className="text-[10px] md:text-xs text-gray-500 line-clamp-2 mb-2 leading-relaxed">{repo.description}</div>
               )}
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 md:gap-3">
                 {repo.primaryLanguage && (
-                  <span className="flex items-center gap-1 text-xs text-gray-400">
-                    <span className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: repo.primaryLanguage.color || '#8b5cf6' }} />
+                  <span className="flex items-center gap-1 text-[10px] md:text-xs text-gray-400">
+                    <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: repo.primaryLanguage.color || '#8b5cf6' }} />
                     {repo.primaryLanguage.name}
                   </span>
                 )}
-                <span className="flex items-center gap-1 text-xs text-gray-400">
-                  <FaStar className="text-[10px] text-yellow-400" /> {repo.stargazerCount}
+                <span className="flex items-center gap-1 text-[10px] md:text-xs text-gray-400">
+                  <FaStar className="text-[8px] md:text-[10px] text-yellow-400" /> {repo.stargazerCount}
                 </span>
-                <span className="flex items-center gap-1 text-xs text-gray-400">
-                  <FaCodeBranch className="text-[10px]" /> {repo.forkCount}
+                <span className="flex items-center gap-1 text-[10px] md:text-xs text-gray-400">
+                  <FaCodeBranch className="text-[8px] md:text-[10px]" /> {repo.forkCount}
                 </span>
               </div>
             </a>
           ))}
           {!loading && data.pinned.length === 0 && (
-            <div className="col-span-2 md:col-span-3 text-xs text-gray-500 text-center py-4">
+            <div className="col-span-1 sm:col-span-2 md:col-span-3 text-[10px] md:text-xs text-gray-500 text-center py-4">
               Add a VITE_GITHUB_TOKEN to .env to show pinned repos
             </div>
           )}
@@ -448,30 +448,30 @@ function GitHubStats() {
 
       {/* Contribution Heatmap */}
       <div>
-        <div className="flex items-center gap-2 mb-3">
-          <span className="text-xs text-gray-400 font-body">Contribution Activity</span>
-          <div className="flex items-center gap-1 ml-auto">
-            <span className="text-[10px] text-gray-500">Less</span>
-            <div className="w-3.5 h-3.5 rounded-sm bg-purple-500/5 border border-purple-500/10" />
-            <div className="w-3.5 h-3.5 rounded-sm bg-purple-500/20" />
-            <div className="w-3.5 h-3.5 rounded-sm bg-purple-500/40" />
-            <div className="w-3.5 h-3.5 rounded-sm bg-purple-500/60" />
-            <div className="w-3.5 h-3.5 rounded-sm bg-purple-500/90" />
-            <span className="text-[10px] text-gray-500">More</span>
+        <div className="flex items-center gap-2 mb-2 md:mb-3">
+          <span className="text-[10px] md:text-xs text-gray-400 font-body">Contribution Activity</span>
+          <div className="flex items-center gap-0.5 md:gap-1 ml-auto">
+            <span className="text-[8px] md:text-[10px] text-gray-500">Less</span>
+            <div className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 rounded-sm bg-purple-500/5 border border-purple-500/10" />
+            <div className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 rounded-sm bg-purple-500/20" />
+            <div className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 rounded-sm bg-purple-500/40" />
+            <div className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 rounded-sm bg-purple-500/60" />
+            <div className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 rounded-sm bg-purple-500/90" />
+            <span className="text-[8px] md:text-[10px] text-gray-500">More</span>
           </div>
         </div>
         <div className="overflow-x-auto scrollbar-hide -mx-1 px-1 pb-1">
-          <div className="flex items-end gap-1 min-w-max">
+          <div className="flex items-end gap-0.5 md:gap-1 min-w-max">
             {monthBlocks.map((block, bi) => (
-              <div key={bi} className={`flex flex-col ${bi > 0 ? 'border-l border-purple-500/15 pl-1' : ''}`}>
-                <div className="text-[10px] text-gray-500 font-body mb-1 text-center">{block.name}</div>
-                <div className="flex gap-[3px]">
+              <div key={bi} className={`flex flex-col ${bi > 0 ? 'border-l border-purple-500/15 pl-0.5 md:pl-1' : ''}`}>
+                <div className="text-[8px] md:text-[10px] text-gray-500 font-body mb-0.5 md:mb-1 text-center">{block.name}</div>
+                <div className="flex gap-[2px] md:gap-[3px]">
                   {block.weeks.map((week, wi) => (
-                    <div key={wi} className="flex flex-col gap-1">
+                    <div key={wi} className="flex flex-col gap-0.5 md:gap-1">
                       {week.map((day, di) => (
                         <div
                           key={di}
-                          className={`w-3.5 h-3.5 rounded-[3px] ${getHeatColor(day.contributionCount)} transition-colors`}
+                          className={`w-2.5 h-2.5 md:w-3.5 md:h-3.5 rounded-[2px] md:rounded-[3px] ${getHeatColor(day.contributionCount)} transition-colors`}
                           title={`${day.contributionCount} contributions on ${day.date}`}
                         />
                       ))}
