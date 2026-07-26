@@ -452,11 +452,11 @@ function GitHubStats() {
           <span className="text-xs text-gray-400 font-body">Contribution Activity</span>
           <div className="flex items-center gap-1 ml-auto">
             <span className="text-[10px] text-gray-500">Less</span>
-            <div className="w-2.5 h-2.5 rounded-sm bg-purple-500/5 border border-purple-500/10" />
-            <div className="w-2.5 h-2.5 rounded-sm bg-purple-500/20" />
-            <div className="w-2.5 h-2.5 rounded-sm bg-purple-500/40" />
-            <div className="w-2.5 h-2.5 rounded-sm bg-purple-500/60" />
-            <div className="w-2.5 h-2.5 rounded-sm bg-purple-500/90" />
+            <div className="w-3.5 h-3.5 rounded-sm bg-purple-500/5 border border-purple-500/10" />
+            <div className="w-3.5 h-3.5 rounded-sm bg-purple-500/20" />
+            <div className="w-3.5 h-3.5 rounded-sm bg-purple-500/40" />
+            <div className="w-3.5 h-3.5 rounded-sm bg-purple-500/60" />
+            <div className="w-3.5 h-3.5 rounded-sm bg-purple-500/90" />
             <span className="text-[10px] text-gray-500">More</span>
           </div>
         </div>
@@ -467,11 +467,11 @@ function GitHubStats() {
                 <div className="text-[10px] text-gray-500 font-body mb-1 text-center">{block.name}</div>
                 <div className="flex gap-[3px]">
                   {block.weeks.map((week, wi) => (
-                    <div key={wi} className="flex flex-col gap-[3px]">
+                    <div key={wi} className="flex flex-col gap-1">
                       {week.map((day, di) => (
                         <div
                           key={di}
-                          className={`w-2.5 h-2.5 rounded-[2px] ${getHeatColor(day.contributionCount)} transition-colors`}
+                          className={`w-3.5 h-3.5 rounded-[3px] ${getHeatColor(day.contributionCount)} transition-colors`}
                           title={`${day.contributionCount} contributions on ${day.date}`}
                         />
                       ))}
