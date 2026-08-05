@@ -135,11 +135,11 @@ export const projects = [
     image: null,
   },
   {
-    title: 'Voxora',
-    description: 'A speech-to-text AI agent that leverages LLMs to convert spoken language into accurate text and enable intelligent conversational interactions. Built with LiveKit and LangChain, it supports real-time voice processing and AI-powered responses.',
+    title: 'SplitSync',
+    description: 'SplitShare is a collaborative platform for managing shared subscriptions and recurring expenses. Create groups, track member payments, send reminders, and simplify cost sharing with ease.',
     tech: ['Python', 'OpenAI', 'Speech-to-Text (STT)', 'LiveKit', 'LangChain'],
-    github: 'https://github.com/Seelam-Mohith/Voxora',
-    live: '#',
+    github: 'https://github.com/Seelam-Mohith/SplitSync',
+    live: 'https://splitxsync.netlify.app',
     image: null,
   },
   {
