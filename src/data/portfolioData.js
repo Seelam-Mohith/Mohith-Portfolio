@@ -155,7 +155,7 @@ export const projects = [
     description: 'A full-stack MERN project management platform designed to streamline task tracking and team collaboration. Following a Kanban-style SDLC workflow, it enables teams to organize, monitor, and manage projects efficiently from planning to completion.',
     tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Axios'],
     github: 'https://github.com/Seelam-Mohith/Planora-ProjectManagementSystem',
-    live: '#',
+    live: 'https://planorraa.netlify.app',
     image: null,
   },
 ]
