@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+﻿import { useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaEnvelope, FaGithub, FaLinkedin, FaPaperPlane, FaCheckCircle } from 'react-icons/fa'
 import { SiLeetcode } from 'react-icons/si'
@@ -120,24 +120,14 @@ export default function Contact() {
             {/* Social cards */}
             <div className="space-y-4">
               {socialLinks.map((item, i) => (
-                <motion.a
+                <a
                   key={item.label}
                   href={item.href}
                   target={item.label === 'Email' ? undefined : '_blank'}
                   rel={item.label === 'Email' ? undefined : 'noopener noreferrer'}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.1 * i }}
-                  whileHover={{
-                    x: 4,
-                    borderColor: `${item.color}99`,
-                    boxShadow: `0 0 25px ${item.color}20`,
-                  }}
-                  className="group relative flex items-center gap-4 p-4 rounded-xl cursor-pointer"
+                  className="group relative flex items-center gap-4 p-4 rounded-xl cursor-pointer transition-all duration-300 hover:translate-x-1"
                   style={{
                     background: 'rgba(26, 26, 46, 0.5)',
-                    backdropFilter: 'blur(12px)',
                     border: '1px solid rgba(168, 85, 247, 0.2)',
                     boxShadow: '0 0 15px rgba(168, 85, 247, 0.08)',
                   }}
@@ -157,15 +147,12 @@ export default function Contact() {
                     <p className="text-xs font-display text-gray-500 tracking-wider">{item.label}</p>
                     <p className="text-sm font-body text-gray-300 truncate">{item.value}</p>
                   </div>
-                  <motion.div
-                    className="text-purple-400/50 group-hover:text-purple-300 transition-colors"
-                    whileHover={{ x: 2 }}
-                  >
+                  <div className="text-purple-400/50 group-hover:text-purple-300 transition-colors group-hover:translate-x-0.5">
                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
-                  </motion.div>
-                </motion.a>
+                  </div>
+                </a>
               ))}
             </div>
           </motion.div>
@@ -182,7 +169,6 @@ export default function Contact() {
               className="relative p-4 md:p-5 rounded-2xl"
               style={{
                 background: 'rgba(26, 26, 46, 0.4)',
-                backdropFilter: 'blur(12px)',
                 border: '1px solid rgba(168, 85, 247, 0.2)',
                 boxShadow: '0 0 30px rgba(168, 85, 247, 0.08)',
               }}

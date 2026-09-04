@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+﻿import { useRef, useState, useEffect } from 'react'
 import { motion, useInView } from 'framer-motion'
 import {
   FaTrophy, FaMedal, FaStar, FaFire, FaCrown, FaGamepad,
@@ -62,31 +62,17 @@ const AchievementCard = ({ hack, index }) => {
   const TrophyIcon = isWinner ? FaTrophy : FaMedal
 
   return (
-    <motion.div
+    <div
       ref={cardRef}
-      initial={{ opacity: 0, y: 50, scale: 0.9 }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-        scale: 1,
-      }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{
-        type: 'spring',
-        stiffness: 80,
-        damping: 16,
-        delay: index * 0.15,
-      }}
-      whileHover={{ y: -8, transition: { type: 'spring', stiffness: 200, damping: 18 } }}
       className="group relative h-full"
     >
-      <motion.div
-        className="relative rounded-2xl overflow-hidden h-full flex flex-col"
+      <div
+        className="relative rounded-2xl overflow-hidden h-full flex flex-col transition-all duration-300"
         style={{
+          transform: isInView ? 'translateY(-4px)' : 'translateY(0px)',
           background: isInView
             ? 'rgba(26, 26, 46, 0.6)'
             : 'rgba(26, 26, 46, 0.3)',
-          backdropFilter: 'blur(12px)',
           border: `1px solid ${isWinner ? 'rgba(250,204,21,0.3)' : 'rgba(168,85,247,0.2)'}`,
           boxShadow: isWinner
             ? '0 0 30px rgba(250,204,21,0.1), inset 0 0 20px rgba(250,204,21,0.04)'
@@ -122,21 +108,7 @@ const AchievementCard = ({ hack, index }) => {
         <div className="p-6 md:p-8 space-y-5 flex-1">
           {/* Trophy / Medal icon */}
           <div className="flex justify-center">
-            <motion.div
-              initial={{ y: -20, opacity: 0 }}
-              whileInView={{
-                y: 0,
-                opacity: 1,
-              }}
-              viewport={{ once: true }}
-              transition={{
-                type: 'spring',
-                stiffness: 200,
-                damping: 12,
-                delay: 0.2 + index * 0.15,
-              }}
-              className="relative"
-            >
+            <div className="relative">
               <div
                 className="absolute inset-0 blur-xl opacity-40"
                 style={{
@@ -151,11 +123,11 @@ const AchievementCard = ({ hack, index }) => {
                   filter: `drop-shadow(0 0 ${isWinner ? '12' : '6'}px ${isWinner ? 'rgba(250,204,21,0.6)' : 'rgba(168,85,247,0.4)'})`,
                 }}
               />
-            </motion.div>
+            </div>
           </div>
 
           {/* Hackathon Name */}
-          <motion.h3
+          <h3
             className="text-center text-xl md:text-2xl font-display font-bold tracking-wide"
             style={{
               fontFamily: 'Orbitron, monospace',
@@ -168,15 +140,11 @@ const AchievementCard = ({ hack, index }) => {
             }}
           >
             {hack.name}
-          </motion.h3>
+          </h3>
 
           {/* Position Badge */}
           <div className="flex justify-center">
-            <motion.div
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ type: 'spring', stiffness: 200, damping: 12, delay: 0.4 + index * 0.15 }}
+            <div
               className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold font-display tracking-wider ${colors.badge} text-white`}
               style={{
                 boxShadow: `0 0 16px ${isWinner ? 'rgba(250,204,21,0.4)' : 'rgba(168,85,247,0.3)'}`,
@@ -184,7 +152,7 @@ const AchievementCard = ({ hack, index }) => {
             >
               {isWinner ? <FaCrown className="text-[10px]" /> : <FaStarHalfAlt className="text-[10px]" />}
               <span>{hack.position}</span>
-            </motion.div>
+            </div>
           </div>
 
           {/* Project description */}
@@ -192,7 +160,7 @@ const AchievementCard = ({ hack, index }) => {
             {hack.details ? (
               hack.details.map((detail, i) => (
                 <p key={i} className="text-gray-400 font-body text-sm leading-relaxed">
-                  • {detail}
+                  â€¢ {detail}
                 </p>
               ))
             ) : (
@@ -205,12 +173,8 @@ const AchievementCard = ({ hack, index }) => {
           {/* Tech stack tags */}
           <div className="flex flex-wrap justify-center gap-1.5">
             {hack.tech.map((tech, i) => (
-              <motion.span
+              <span
                 key={tech}
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5 + i * 0.08 + index * 0.05, duration: 0.3 }}
                 className="px-2 py-0.5 text-[10px] font-mono text-purple-300 rounded-sm"
                 style={{
                   background: 'rgba(168,85,247,0.12)',
@@ -219,18 +183,12 @@ const AchievementCard = ({ hack, index }) => {
                 }}
               >
                 {tech}
-              </motion.span>
+              </span>
             ))}
           </div>
 
           {/* XP decoration */}
-          <motion.div
-            className="text-center"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.7 + index * 0.15 }}
-          >
+          <div className="text-center">
             <span
               className="text-[10px] font-mono tracking-widest"
               style={{
@@ -239,16 +197,10 @@ const AchievementCard = ({ hack, index }) => {
             >
               +{isWinner ? '500' : rank === 'silver' ? '300' : '150'} XP
             </span>
-          </motion.div>
+          </div>
 
           {/* View Certificate / GitHub */}
-          <motion.div
-            className="flex justify-center gap-3 mt-auto pt-3"
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.8 + index * 0.15 }}
-          >
+          <div className="flex justify-center gap-3 mt-auto pt-3">
             <a
               href={hack.certificate || '#'}
               target="_blank"
@@ -292,7 +244,7 @@ const AchievementCard = ({ hack, index }) => {
               <FaGithub className="text-sm" />
               <span>Source Code</span>
             </a>
-          </motion.div>
+          </div>
         </div>
 
         {/* Bottom shimmer on hover */}
@@ -304,8 +256,8 @@ const AchievementCard = ({ hack, index }) => {
               : 'linear-gradient(90deg, transparent, #a855f7, transparent)',
           }}
         />
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   )
 }
 
@@ -367,7 +319,6 @@ export default function Hackathons() {
             className="inline-flex items-center gap-3 px-5 py-2.5 rounded-xl mb-3"
             style={{
               background: 'rgba(26, 26, 46, 0.5)',
-              backdropFilter: 'blur(12px)',
               border: '1px solid rgba(168,85,247,0.2)',
             }}
           >

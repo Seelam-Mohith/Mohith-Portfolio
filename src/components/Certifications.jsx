@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { FaCalendarAlt, FaExternalLinkAlt } from 'react-icons/fa'
 import { SiOracle, SiIbm } from 'react-icons/si'
@@ -31,23 +31,6 @@ const PixelCorner = () => (
   </>
 )
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.12 },
-  },
-}
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 50, scale: 0.9 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { type: 'spring', stiffness: 100, damping: 15 },
-  },
-}
-
 function CertificationCard({ cert, index }) {
   const [isHovered, setIsHovered] = useState(false)
 
@@ -55,7 +38,7 @@ function CertificationCard({ cert, index }) {
   const glowColor = cardGlowColors[index % cardGlowColors.length]
 
   return (
-    <motion.div variants={cardVariants} className="group h-full">
+    <div className="group h-full">
       <motion.div
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -72,7 +55,6 @@ function CertificationCard({ cert, index }) {
           className="relative transition-all duration-500 flex-1 flex flex-col"
           style={{
             background: `rgba(26, 26, 46, ${isHovered ? 0.7 : 0.5})`,
-            backdropFilter: 'blur(12px)',
             border: `1px solid ${isHovered ? glowColor.replace('0.3', '0.6') : 'rgba(168, 85, 247, 0.15)'}`,
             borderTop: 'none',
             boxShadow: isHovered
@@ -84,11 +66,7 @@ function CertificationCard({ cert, index }) {
 
           <div className="p-6 md:p-7 flex flex-col items-center text-center gap-4 flex-1">
             {/* Org Logo */}
-            <motion.div
-              animate={isHovered ? { rotate: [0, -10, 10, -5, 5, 0], scale: 1.15 } : {}}
-              transition={{ duration: 0.6 }}
-              className="relative"
-            >
+            <div className="relative">
               <div
                 className="absolute inset-0 blur-xl opacity-40 transition-opacity duration-300"
                 style={{ background: cert.logo === 'oracle' ? '#f80000' : cert.logo === 'ibm' ? '#0062ff' : '#a855f7', borderRadius: '50%' }}
@@ -105,7 +83,7 @@ function CertificationCard({ cert, index }) {
                   style={{ filter: 'drop-shadow(0 0 8px rgba(168,85,247,0.5))' }}
                 />
               )}
-            </motion.div>
+            </div>
 
             {/* Certificate name */}
             <h3
@@ -158,7 +136,7 @@ function CertificationCard({ cert, index }) {
           </div>
         </div>
       </motion.div>
-    </motion.div>
+    </div>
   )
 }
 
@@ -185,17 +163,11 @@ export default function Certifications() {
           </motion.p>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 items-stretch"
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 items-stretch">
           {certifications.map((cert, index) => (
             <CertificationCard key={cert.name} cert={cert} index={index} />
           ))}
-        </motion.div>
+        </div>
 
         <motion.div
           className="text-center mt-10"

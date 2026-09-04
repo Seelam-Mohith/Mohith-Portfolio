@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+﻿import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import {
   FaCalendarAlt, FaArrowRight, FaTrophy, FaStar,
@@ -80,7 +80,6 @@ const ExperienceCard = ({ exp, index, isLeft }) => {
         className="relative rounded-2xl overflow-hidden h-full flex flex-col transition-all duration-300"
         style={{
           background: 'rgba(26, 26, 46, 0.5)',
-          backdropFilter: 'blur(12px)',
           border: '1px solid rgba(168, 85, 247, 0.2)',
           boxShadow: '0 0 20px rgba(168, 85, 247, 0.06), inset 0 0 20px rgba(168, 85, 247, 0.03)',
         }}
