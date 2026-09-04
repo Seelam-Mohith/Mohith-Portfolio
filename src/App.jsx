@@ -10,11 +10,10 @@ import Certifications from './components/Certifications'
 import Contact from './components/Contact'
 import ParticleBackground from './components/ParticleBackground'
 import LoadingScreen from './components/LoadingScreen'
-import ScrollProgress from './components/ScrollProgress'
 import BackToTop from './components/BackToTop'
-import CustomCursor from './components/CustomCursor'
 import EasterEgg from './components/EasterEgg'
 import MusicToggle from './components/MusicToggle'
+import RocketCursor from './components/RocketCursor'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -29,8 +28,7 @@ function App() {
   return (
     <div className="relative min-h-screen bg-dark-400 overflow-hidden">
       <ParticleBackground />
-      <CustomCursor />
-      <ScrollProgress />
+      <RocketCursor />
       <Navbar />
       <main>
         <section id="hero"><Hero /></section>

@@ -49,33 +49,20 @@ const cardVariants = {
 }
 
 function CertificationCard({ cert, index }) {
-  const cardRef = useRef(null)
   const [isHovered, setIsHovered] = useState(false)
-  const [shinePos, setShinePos] = useState({ x: 50, y: 50 })
 
   const accent = accentBars[index % accentBars.length]
   const glowColor = cardGlowColors[index % cardGlowColors.length]
 
-  const handleMouseMove = useCallback((e) => {
-    if (!cardRef.current) return
-    const rect = cardRef.current.getBoundingClientRect()
-    const x = ((e.clientX - rect.left) / rect.width) * 100
-    const y = ((e.clientY - rect.top) / rect.height) * 100
-    setShinePos({ x, y })
-  }, [])
-
   return (
     <motion.div variants={cardVariants} className="group h-full">
       <motion.div
-        ref={cardRef}
-        onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => { setIsHovered(false); setShinePos({ x: 50, y: 50 }) }}
+        onMouseLeave={() => setIsHovered(false)}
         animate={{
           y: isHovered ? -10 : 0,
         }}
         transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-        style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
         className="relative rounded-2xl overflow-hidden cursor-default h-full flex flex-col"
       >
         {/* Accent bar at top */}
@@ -94,17 +81,6 @@ function CertificationCard({ cert, index }) {
           }}
         >
           <PixelCorner />
-
-          {/* Shine/glare effect */}
-          <motion.div
-            className="absolute inset-0 pointer-events-none z-10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isHovered ? 1 : 0 }}
-            transition={{ duration: 0.3 }}
-            style={{
-              background: `radial-gradient(circle at ${shinePos.x}% ${shinePos.y}%, rgba(255,255,255,0.12) 0%, transparent 60%)`,
-            }}
-          />
 
           <div className="p-6 md:p-7 flex flex-col items-center text-center gap-4 flex-1">
             {/* Org Logo */}
@@ -189,22 +165,6 @@ function CertificationCard({ cert, index }) {
 export default function Certifications() {
   return (
     <section id="certifications" className="relative py-20 md:py-32 overflow-hidden">
-      {/* Background orbs */}
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full blur-[120px]"
-          style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.08) 0%, transparent 70%)' }}
-          animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="absolute bottom-1/3 right-1/3 w-96 h-96 rounded-full blur-[140px]"
-          style={{ background: 'radial-gradient(circle, rgba(255,45,158,0.05) 0%, transparent 70%)' }}
-          animate={{ scale: [1.1, 1, 1.1], opacity: [0.2, 0.5, 0.2] }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
-        />
-      </div>
-
       <div className="relative w-full max-w-7xl mx-auto px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

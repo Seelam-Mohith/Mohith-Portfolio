@@ -24,24 +24,14 @@ export default function BackToTop() {
           exit={{ scale: 0, opacity: 0 }}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-40 w-12 h-12 rounded-full flex items-center justify-center cursor-pointer backdrop-blur-md border"
+          className="fixed bottom-8 right-8 z-40 w-12 h-12 rounded-full flex items-center justify-center cursor-pointer backdrop-blur-md border transition-all duration-300 hover:scale-110"
           style={{
             background: "rgba(168,85,247,0.15)",
             borderColor: "rgba(168,85,247,0.4)",
             boxShadow: "0 0 12px rgba(168,85,247,0.3)",
           }}
-          whileHover={{
-            scale: 1.15,
-            boxShadow: "0 0 24px rgba(168,85,247,0.7)",
-          }}
-          whileTap={{ scale: 0.9 }}
         >
-          <motion.div
-            animate={{ scale: [1, 1.15, 1] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          >
-            <FaArrowUp className="text-purple-400 text-lg" />
-          </motion.div>
+          <FaArrowUp className="text-purple-400 text-lg" />
         </motion.button>
       )}
     </AnimatePresence>

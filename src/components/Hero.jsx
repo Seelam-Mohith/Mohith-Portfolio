@@ -1,27 +1,8 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { SiLeetcode } from 'react-icons/si'
 import { personalData } from '../data/portfolioData'
-
-const badges = [
-  { text: '2x Winner', top: '8%', right: '-8%', color: 'from-purple-600 to-pink-500', delay: 0.2 },
-  { text: 'AI/ML', top: '42%', left: '-10%', color: 'from-blue-600 to-purple-500', delay: 0.6 },
-  { text: 'MERN', bottom: '12%', right: '-3%', color: 'from-teal-500 to-blue-500', delay: 1.0 },
-]
-
-const cubes = [
-  { top: '3%', right: '8%', size: 12, color: '#c084fc', delay: 0 },
-  { bottom: '22%', left: '-3%', size: 10, color: '#ff2d9e', delay: 0.5 },
-  { top: '32%', right: '-6%', size: 8, color: '#4a9eff', delay: 1.0 },
-  { bottom: '4%', right: '18%', size: 14, color: '#a855f7', delay: 1.5 },
-]
-
-const diamonds = [
-  { top: '18%', left: '8%', size: 8, delay: 0.3 },
-  { top: '58%', right: '-3%', size: 6, delay: 0.8 },
-  { bottom: '18%', left: '12%', size: 10, delay: 1.3 },
-]
 
 const staggerVariants = {
   hidden: { opacity: 0 },
@@ -44,21 +25,6 @@ const fadeUp = {
 }
 
 export default function Hero() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-  const heroRef = useRef(null)
-
-  useEffect(() => {
-    const handleMouse = (e) => {
-      if (!heroRef.current) return
-      const rect = heroRef.current.getBoundingClientRect()
-      const x = (e.clientX - rect.left) / rect.width - 0.5
-      const y = (e.clientY - rect.top) / rect.height - 0.5
-      setMousePos({ x, y })
-    }
-    window.addEventListener('mousemove', handleMouse, { passive: true })
-    return () => window.removeEventListener('mousemove', handleMouse)
-  }, [])
-
   const handleScroll = (id) => {
     const el = document.querySelector(id)
     if (el) el.scrollIntoView({ behavior: 'smooth' })
@@ -67,31 +33,8 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      ref={heroRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-16"
     >
-      {/* Animated background glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[120px]"
-          style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%)' }}
-          animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-[100px]"
-          style={{ background: 'radial-gradient(circle, rgba(255,45,158,0.12) 0%, transparent 70%)' }}
-          animate={{ scale: [1.1, 1, 1.1], opacity: [0.4, 0.7, 0.4] }}
-          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        />
-        <motion.div
-          className="absolute top-1/2 right-1/3 w-64 h-64 rounded-full blur-[90px]"
-          style={{ background: 'radial-gradient(circle, rgba(74,158,255,0.1) 0%, transparent 70%)' }}
-          animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-        />
-      </div>
-
       {/* Pixel grid overlay */}
       <div className="absolute inset-0 pixel-grid opacity-30 pointer-events-none" />
 
@@ -202,30 +145,8 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: 'easeOut', delay: 0.3 }}
-            style={{
-              transform: `perspective(1000px) rotateY(${mousePos.x * 10}deg) rotateX(${-mousePos.y * 10}deg)`,
-              transition: 'transform 0.1s ease-out',
-            }}
           >
             <div className="relative flex items-center justify-center">
-              {/* Glow behind image */}
-              <motion.div
-                className="absolute w-[130%] h-[130%] -top-[15%] -left-[15%]"
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-              >
-                <div className="w-full h-full rounded-full bg-gradient-to-br from-purple-500/20 via-pink-500/10 to-blue-500/20 blur-[80px]" />
-              </motion.div>
-
-              {/* Second glow layer */}
-              <motion.div
-                className="absolute w-[110%] h-[110%] -top-[5%] -left-[5%]"
-                animate={{ rotate: [360, 0] }}
-                transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
-              >
-                <div className="w-full h-full rounded-full bg-gradient-to-tr from-purple-400/10 via-transparent to-pink-400/10 blur-[60px]" />
-              </motion.div>
-
               {/* Profile image */}
               <div className="relative pixel-border rounded-2xl p-1 lg:-mt-12">
                 <div className="relative bg-dark-400/90 rounded-2xl p-8 backdrop-blur-sm overflow-hidden border border-purple-500/10">
@@ -239,92 +160,6 @@ export default function Hero() {
                   />
                 </div>
               </div>
-
-              {/* Floating badges */}
-              {badges.map((badge) => (
-                <motion.div
-                  key={badge.text}
-                  className={`absolute px-3 py-1.5 rounded-full bg-gradient-to-r ${badge.color} text-white text-[10px] font-game tracking-wider shadow-lg shadow-purple-500/20`}
-                  style={{
-                    top: badge.top,
-                    left: badge.left,
-                    right: badge.right,
-                    bottom: badge.bottom,
-                  }}
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{
-                    opacity: [0, 1, 0.8, 1],
-                    scale: [0, 1, 0.9, 1],
-                    y: [0, -5, 0, -3, 0],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    delay: badge.delay,
-                    ease: 'easeInOut',
-                  }}
-                >
-                  {badge.text}
-                </motion.div>
-              ))}
-
-              {/* Floating cubes */}
-              {cubes.map((cube, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute"
-                  style={{
-                    top: cube.top,
-                    left: cube.left,
-                    right: cube.right,
-                    bottom: cube.bottom,
-                    width: cube.size,
-                    height: cube.size,
-                    backgroundColor: cube.color,
-                  }}
-                  animate={{
-                    rotate: [0, 90, 180, 270, 360],
-                    y: [0, -10, 0, 5, 0],
-                    opacity: [0.4, 0.8, 0.5, 0.7, 0.4],
-                  }}
-                  transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    delay: cube.delay,
-                    ease: 'linear',
-                  }}
-                />
-              ))}
-
-              {/* Floating diamonds */}
-              {diamonds.map((diamond, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute"
-                  style={{
-                    top: diamond.top,
-                    left: diamond.left,
-                    right: diamond.right,
-                    bottom: diamond.bottom,
-                    width: diamond.size,
-                    height: diamond.size,
-                    backgroundColor: '#c084fc',
-                    transform: 'rotate(45deg)',
-                    boxShadow: '0 0 10px rgba(192,132,252,0.4)',
-                  }}
-                  animate={{
-                    y: [0, -8, 0, -4, 0],
-                    opacity: [0.3, 0.9, 0.5, 0.7, 0.3],
-                    scale: [1, 1.2, 0.9, 1.1, 1],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    delay: diamond.delay,
-                    ease: 'easeInOut',
-                  }}
-                />
-              ))}
             </div>
           </motion.div>
         </div>

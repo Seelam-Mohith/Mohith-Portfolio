@@ -174,57 +174,16 @@
   75% { transform: translateY(-30px) translateX(10px); opacity: 0.8; }
 }
 
-@keyframes star-twinkle {
-  0%, 100% { opacity: 0; transform: scale(0.8); }
-  50% { opacity: 1; transform: scale(1.2); }
-}
-
 @keyframes orb-pulse {
-  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.28; }
-  33% { transform: scale(1.2) rotate(120deg); opacity: 0.5; }
-  66% { transform: scale(0.85) rotate(240deg); opacity: 0.2; }
-}
-
-@keyframes cube-spin {
-  0% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
-  25% { transform: translateY(-15px) rotate(90deg); opacity: 0.5; }
-  50% { transform: translateY(-5px) rotate(180deg); opacity: 0.4; }
-  75% { transform: translateY(-20px) rotate(270deg); opacity: 0.6; }
-  100% { transform: translateY(0px) rotate(360deg); opacity: 0.3; }
+  0%, 100% { transform: scale(1); opacity: 0.28; }
+  33% { transform: scale(1.2); opacity: 0.5; }
+  66% { transform: scale(0.85); opacity: 0.2; }
 }
 
 .orb-float {
-  will-change: transform, opacity, filter;
-  animation: orb-pulse 12s ease-in-out infinite;
+  animation: orb-pulse 18s ease-in-out infinite;
 }
 
 .particle-float {
-  will-change: transform, opacity;
-  animation: particle-float 12s ease-in-out infinite;
-}
-
-.star-twinkle {
-  will-change: transform, opacity;
-  animation: star-twinkle 3s ease-in-out infinite;
-}
-
-.orb-float {
-  will-change: transform, opacity, filter;
-  animation: orb-pulse 12s ease-in-out infinite;
-}
-
-.cube-spin {
-  will-change: transform, opacity;
-  animation: cube-spin 14s ease-in-out infinite;
-}
-
-.floating-icon {
-  will-change: transform;
-  animation: float-icon 8s ease-in-out infinite;
-}
-
-@keyframes float-icon {
-  0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-  33% { transform: translateY(-16px) translateX(8px) rotate(6deg); }
-  66% { transform: translateY(-8px) translateX(-4px) rotate(-4deg); }
+  animation: particle-float 16s ease-in-out infinite;
 }

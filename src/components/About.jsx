@@ -490,21 +490,6 @@ function GitHubStats() {
 export default function About() {
   return (
     <section id="about" className="relative py-20 md:py-32 overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full blur-[120px]"
-          style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.08) 0%, transparent 70%)' }}
-          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="absolute bottom-1/3 left-1/4 w-80 h-80 rounded-full blur-[100px]"
-          style={{ background: 'radial-gradient(circle, rgba(255,45,158,0.06) 0%, transparent 70%)' }}
-          animate={{ scale: [1.1, 1, 1.1], opacity: [0.2, 0.5, 0.2] }}
-          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        />
-      </div>
-
       <div className="relative w-full max-w-7xl mx-auto px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -653,8 +638,6 @@ export default function About() {
                     className="text-yellow-400 text-sm flex-shrink-0"
                     style={{
                       filter: 'drop-shadow(0 0 4px rgba(250,204,21,0.5))',
-                      animation: `twinkle 2s ease-in-out infinite`,
-                      animationDelay: `${i * 0.4}s`,
                     }}
                   />
                   <span>{fact}</span>

@@ -12,16 +12,6 @@ const socialLinks = [
   { icon: SiLeetcode, label: 'LeetCode', value: 'leetcode.com/MohithSeelam', href: personalData.social.leetcode, color: '#ff2d9e' },
 ]
 
-const particles = Array.from({ length: 20 }, (_, i) => ({
-  id: i,
-  x: Math.random() * 100,
-  y: Math.random() * 100,
-  size: Math.random() * 6 + 2,
-  delay: Math.random() * 5,
-  duration: Math.random() * 4 + 4,
-  color: ['#c084fc', '#a855f7', '#ff2d9e', '#4a9eff', '#7e22ce'][Math.floor(Math.random() * 5)],
-}))
-
 const confettiPieces = Array.from({ length: 30 }, (_, i) => ({
   id: i,
   x: Math.random() * 100 - 50,
@@ -74,59 +64,8 @@ export default function Contact() {
 
   return (
     <section className="relative py-20 md:py-32 overflow-hidden">
-      {/* Glowing orbs */}
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          className="absolute top-1/4 left-1/3 w-96 h-96 rounded-full blur-[120px]"
-          style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.08) 0%, transparent 70%)' }}
-          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full blur-[100px]"
-          style={{ background: 'radial-gradient(circle, rgba(255,45,158,0.06) 0%, transparent 70%)' }}
-          animate={{ scale: [1.1, 1, 1.1], opacity: [0.2, 0.5, 0.2] }}
-          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        />
-        <motion.div
-          className="absolute top-1/2 right-1/3 w-64 h-64 rounded-full blur-[90px]"
-          style={{ background: 'radial-gradient(circle, rgba(74,158,255,0.06) 0%, transparent 70%)' }}
-          animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.4, 0.2] }}
-          transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-        />
-      </div>
-
       {/* Pixel grid overlay */}
       <div className="absolute inset-0 pixel-grid opacity-20 pointer-events-none" />
-
-      {/* Floating pixel particles */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {particles.map((p) => (
-          <motion.div
-            key={p.id}
-            className="absolute rounded-sm"
-            style={{
-              left: `${p.x}%`,
-              top: `${p.y}%`,
-              width: p.size,
-              height: p.size,
-              backgroundColor: p.color,
-            }}
-            animate={{
-              y: [0, -30, 0, -15, 0],
-              x: [0, 10, -10, 5, 0],
-              opacity: [0.2, 0.6, 0.3, 0.5, 0.2],
-              rotate: [0, 90, 180, 270, 360],
-            }}
-            transition={{
-              duration: p.duration,
-              repeat: Infinity,
-              delay: p.delay,
-              ease: 'easeInOut',
-            }}
-          />
-        ))}
-      </div>
 
       <div className="relative w-full max-w-7xl mx-auto px-6 md:px-12">
         {/* Section heading */}

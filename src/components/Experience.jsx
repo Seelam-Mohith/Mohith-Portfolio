@@ -13,15 +13,6 @@ const roleDecorations = [
   { icon: FaLaptopCode, label: 'Intern' },
 ]
 
-const floatingIcons = [
-  { icon: FaCode, x: '5%', y: '12%', delay: 0, size: 26, color: '#a855f7' },
-  { icon: FaServer, x: '88%', y: '15%', delay: 1.5, size: 22, color: '#ff2d9e' },
-  { icon: FaGithub, x: '8%', y: '68%', delay: 0.8, size: 24, color: '#c084fc' },
-  { icon: FaLaptopCode, x: '92%', y: '73%', delay: 2.0, size: 20, color: '#7e22ce' },
-  { icon: FaBrain, x: '6%', y: '42%', delay: 0.3, size: 28, color: '#a855f7' },
-  { icon: FaStar, x: '90%', y: '45%', delay: 1.2, size: 18, color: '#ec4899' },
-]
-
 const variants = {
   hidden: {},
   visible: {
@@ -213,35 +204,6 @@ export default function Experience() {
 
   return (
     <section id="experience" ref={sectionRef} className="relative py-20 md:py-32 overflow-hidden">
-      {/* Floating background icons */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {floatingIcons.map((item, i) => (
-          <div
-            key={i}
-            className="absolute opacity-[0.04] floating-icon"
-            style={{ left: item.x, top: item.y, animationDelay: `${item.delay}s` }}
-          >
-            <item.icon size={item.size} color={item.color} />
-          </div>
-        ))}
-      </div>
-
-      {/* Gradient orbs */}
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[120px]"
-          style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.08) 0%, transparent 70%)' }}
-          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-[100px]"
-          style={{ background: 'radial-gradient(circle, rgba(255,45,158,0.06) 0%, transparent 70%)' }}
-          animate={{ scale: [1.1, 1, 1.1], opacity: [0.2, 0.5, 0.2] }}
-          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        />
-      </div>
-
       <div className="relative w-full max-w-7xl mx-auto px-6 md:px-12">
         {/* Section heading */}
         <motion.div

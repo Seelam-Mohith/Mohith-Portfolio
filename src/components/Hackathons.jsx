@@ -23,58 +23,6 @@ const positionColors = {
   bronze: { text: 'text-orange-300', bg: 'bg-orange-500/20', border: 'border-orange-500/40', glow: 'rgba(251,146,60,0.2)', badge: 'bg-gradient-to-r from-amber-600 to-orange-500', particle: '#f97316' },
 }
 
-const PixelStar = ({ x, y, delay, size }) => (
-  <motion.div
-    className="absolute pointer-events-none"
-    style={{ left: x, top: y }}
-    initial={{ opacity: 0, scale: 0 }}
-    animate={{
-      opacity: [0, 0.6, 0.2, 0.8, 0],
-      scale: [0, 1, 0.5, 1.2, 0],
-      rotate: [0, 90, 180, 270, 360],
-    }}
-    transition={{
-      duration: 4 + Math.random() * 3,
-      repeat: Infinity,
-      delay,
-      ease: 'easeInOut',
-    }}
-  >
-    <div
-      className="relative"
-      style={{
-        width: size || 6,
-        height: size || 6,
-        imageRendering: 'pixelated',
-        clipPath: 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)',
-        background: 'linear-gradient(135deg, #c084fc, #fbbf24)',
-        boxShadow: '0 0 6px rgba(192,132,252,0.6)',
-      }}
-    />
-  </motion.div>
-)
-
-const ConfettiParticle = ({ x, y, delay, color }) => (
-  <motion.div
-    className="absolute pointer-events-none"
-    style={{ left: x, top: y, width: 4, height: 4, background: color || '#a855f7', borderRadius: '1px' }}
-    initial={{ opacity: 0, y: 0, x: 0, rotate: 0 }}
-    animate={{
-      opacity: [0, 1, 1, 0],
-      y: [0, -60 + Math.random() * -40, -80 + Math.random() * -60],
-      x: [0, (Math.random() - 0.5) * 80, (Math.random() - 0.5) * 120],
-      rotate: [0, 180, 360],
-    }}
-    transition={{
-      duration: 2 + Math.random() * 2,
-      repeat: Infinity,
-      delay,
-      ease: 'easeOut',
-      repeatDelay: Math.random() * 4,
-    }}
-  />
-)
-
 const NewRevealBadge = () => (
   <motion.div
     className="absolute -top-2 -right-2 z-20"
@@ -83,24 +31,16 @@ const NewRevealBadge = () => (
     viewport={{ once: true }}
     transition={{ type: 'spring', stiffness: 300, damping: 12, delay: 0.6 }}
   >
-    <motion.div
+    <div
       className="relative px-2 py-0.5 text-[9px] font-bold font-display tracking-wider text-white rounded-sm"
       style={{
         background: 'linear-gradient(135deg, #a855f7, #ec4899)',
         boxShadow: '0 0 12px rgba(168,85,247,0.6), 0 2px 0 rgba(0,0,0,0.3)',
         imageRendering: 'pixelated',
       }}
-      animate={{
-        boxShadow: [
-          '0 0 12px rgba(168,85,247,0.6), 0 2px 0 rgba(0,0,0,0.3)',
-          '0 0 24px rgba(168,85,247,0.9), 0 2px 0 rgba(0,0,0,0.3)',
-          '0 0 12px rgba(168,85,247,0.6), 0 2px 0 rgba(0,0,0,0.3)',
-        ],
-      }}
-      transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
     >
       NEW
-    </motion.div>
+    </div>
   </motion.div>
 )
 
@@ -179,36 +119,6 @@ const AchievementCard = ({ hack, index }) => {
           }}
         />
 
-        {/* Animated glow behind trophies */}
-        {isWinner && (
-          <motion.div
-            className="absolute -inset-4 pointer-events-none"
-            style={{
-              background: 'radial-gradient(circle at 50% 30%, rgba(250,204,21,0.08) 0%, transparent 60%)',
-            }}
-            animate={{
-              opacity: [0.3, 0.7, 0.3],
-              scale: [1, 1.05, 1],
-            }}
-            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-          />
-        )}
-
-        {/* Confetti particles for winners */}
-        {isWinner && (
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <ConfettiParticle
-                key={i}
-                x={`${15 + (i * 14)}%`}
-                y={`${30 + (i % 3) * 20}%`}
-                delay={i * 0.3}
-                color={i % 2 === 0 ? '#fbbf24' : '#a855f7'}
-              />
-            ))}
-          </div>
-        )}
-
         <div className="p-6 md:p-8 space-y-5 flex-1">
           {/* Trophy / Medal icon */}
           <div className="flex justify-center">
@@ -225,9 +135,6 @@ const AchievementCard = ({ hack, index }) => {
                 damping: 12,
                 delay: 0.2 + index * 0.15,
               }}
-              animate={isInView ? {
-                y: [0, -6, 0],
-              } : {}}
               className="relative"
             >
               <div
@@ -417,44 +324,6 @@ export default function Hackathons() {
 
   return (
     <section id="hackathons" ref={sectionRef} className="relative py-20 md:py-32 overflow-hidden">
-      {/* Floating pixel stars */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[
-          { x: '5%', y: '10%', delay: 0, size: 8 },
-          { x: '92%', y: '15%', delay: 1.2, size: 6 },
-          { x: '8%', y: '60%', delay: 0.8, size: 7 },
-          { x: '95%', y: '70%', delay: 2.0, size: 5 },
-          { x: '3%', y: '85%', delay: 0.5, size: 6 },
-          { x: '97%', y: '40%', delay: 1.5, size: 8 },
-          { x: '50%', y: '5%', delay: 1.8, size: 5 },
-          { x: '45%', y: '92%', delay: 0.3, size: 6 },
-        ].map((star, i) => (
-          <PixelStar key={i} {...star} />
-        ))}
-      </div>
-
-      {/* Background glow orbs */}
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[120px]"
-          style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.08) 0%, transparent 70%)' }}
-          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-[100px]"
-          style={{ background: 'radial-gradient(circle, rgba(255,45,158,0.06) 0%, transparent 70%)' }}
-          animate={{ scale: [1.1, 1, 1.1], opacity: [0.2, 0.5, 0.2] }}
-          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        />
-        <motion.div
-          className="absolute top-1/3 right-1/3 w-64 h-64 rounded-full blur-[100px]"
-          style={{ background: 'radial-gradient(circle, rgba(251,191,36,0.04) 0%, transparent 70%)' }}
-          animate={{ scale: [1, 1.3, 1], opacity: [0.1, 0.3, 0.1] }}
-          transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-        />
-      </div>
-
       <div className="relative w-full max-w-7xl mx-auto px-6 md:px-12">
         {/* Section heading */}
         <motion.div
@@ -535,11 +404,9 @@ export default function Hackathons() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
             >
-              <motion.div
+              <div
                 className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white"
                 style={{ boxShadow: '0 0 12px rgba(168,85,247,0.8)' }}
-                animate={{ opacity: [0.4, 1, 0.4] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
               />
             </motion.div>
           </div>
