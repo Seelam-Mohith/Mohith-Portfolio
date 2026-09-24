@@ -119,11 +119,11 @@ export const projects = [
     image: null,
   },
   {
-    title: 'Align-AI',
-    description: 'A full-stack AI-powered career assistant that helps users analyze resumes, identify skill gaps, and evaluate job readiness. It generates personalized learning roadmaps and recommendations to support career growth and upskilling.',
-    tech: ['React', 'Node.js', 'Express.js', 'Python', 'Machine Learning', 'Unsupervised Learning'],
-    github: 'https://github.com/Seelam-Mohith/Align-AI',
-    live: '#',
+    title: 'CyberResAI',
+    description: 'A RAG-powered cybersecurity incident response assistant that uses MITRE ATT&CK Atomic Red Team playbooks to retrieve relevant techniques, detection guidance, and atomic test commands, providing contextual answers to security queries.',
+    tech: ['Python', 'LangChain', 'RAG', 'ChromaDB', 'Hugging Face', 'Groq', 'MITRE ATT&CK'],
+    github: 'https://github.com/Seelam-Mohith/CyberResAI',
+    live: 'cyberres-ai.streamlit.app',
     image: null,
   },
   {
