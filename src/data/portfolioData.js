@@ -121,7 +121,7 @@ export const projects = [
   {
     title: 'CyberResAI',
     description: 'A RAG-powered cybersecurity incident response assistant that uses MITRE ATT&CK Atomic Red Team playbooks to retrieve relevant techniques, detection guidance, and atomic test commands, providing contextual answers to security queries.',
-    tech: ['Python', 'LangChain', 'RAG', 'ChromaDB', 'Hugging Face', 'Groq', 'MITRE ATT&CK'],
+    tech: ['Python', 'RAG', 'ChromaDB', 'Hugging Face', 'Groq', 'MITRE ATT&CK'],
     github: 'https://github.com/Seelam-Mohith/CyberResAI',
     live: 'cyberres-ai.streamlit.app',
     image: null,
@@ -137,7 +137,7 @@ export const projects = [
   {
     title: 'SplitSync',
     description: 'SplitShare is a collaborative platform for managing shared subscriptions and recurring expenses. Create groups, track member payments, send reminders, and simplify cost sharing with ease.',
-    tech: ['Python', 'OpenAI', 'Speech-to-Text (STT)', 'LiveKit', 'LangChain'],
+    tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'Razorpay'],
     github: 'https://github.com/Seelam-Mohith/SplitSync',
     live: 'https://splitxsync.netlify.app',
     image: null,
