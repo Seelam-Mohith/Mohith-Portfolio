@@ -123,7 +123,7 @@ export const projects = [
     description: 'A RAG-powered cybersecurity incident response assistant that uses MITRE ATT&CK Atomic Red Team playbooks to retrieve relevant techniques, detection guidance, and atomic test commands, providing contextual answers to security queries.',
     tech: ['Python', 'RAG', 'ChromaDB', 'Hugging Face', 'Groq', 'MITRE ATT&CK'],
     github: 'https://github.com/Seelam-Mohith/CyberResAI',
-    live: 'cyberres-ai.streamlit.app',
+    live: 'https://cyberres-ai.streamlit.app',
     image: null,
   },
   {
