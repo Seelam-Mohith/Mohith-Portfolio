@@ -111,15 +111,15 @@ export const projects = [
     image: null,
   },
   {
-    title: 'ScholarChat AI',
+    title: 'ScholarChat-AI',
     description: 'An AI-powered academic assistant built with a RAG pipeline that enables students to interact with syllabus documents using natural language. Users can upload PDFs and receive accurate, context-aware answers through both text and voice queries.',
     tech: ['Python', 'Streamlit', 'LangChain', 'Web Speech API', 'Gen AI', 'RAG Pipeline'],
     github: 'https://github.com/Seelam-Mohith/ScholarChat-AI',
-    live: '#',
+    live: 'https://scholarchat-ai.streamlit.app',
     image: null,
   },
   {
-    title: 'CyberResAI',
+    title: 'CyberRes-AI',
     description: 'A RAG-powered cybersecurity incident response assistant that uses MITRE ATT&CK Atomic Red Team playbooks to retrieve relevant techniques, detection guidance, and atomic test commands, providing contextual answers to security queries.',
     tech: ['Python', 'RAG', 'ChromaDB', 'Hugging Face', 'Groq', 'MITRE ATT&CK'],
     github: 'https://github.com/Seelam-Mohith/CyberResAI',
