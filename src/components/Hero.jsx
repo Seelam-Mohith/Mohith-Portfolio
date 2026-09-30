@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { SiLeetcode } from 'react-icons/si'
+import CursorFollowVideo from './CursorFollowVideo'
 import { personalData } from '../data/portfolioData'
 
 const staggerVariants = {
@@ -25,6 +26,8 @@ const fadeUp = {
 }
 
 export default function Hero() {
+  const heroRef = useRef(null)
+
   const handleScroll = (id) => {
     const el = document.querySelector(id)
     if (el) el.scrollIntoView({ behavior: 'smooth' })
@@ -33,6 +36,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
+      ref={heroRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-16"
     >
       {/* Pixel grid overlay */}
@@ -147,13 +151,12 @@ export default function Hero() {
             transition={{ duration: 0.8, ease: 'easeOut', delay: 0.3 }}
           >
             <div className="relative flex items-center justify-center">
-              {/* Profile image */}
+              {/* Cursor-following character */}
               <div className="relative pixel-border rounded-2xl p-1 lg:-mt-12">
                 <div className="relative bg-dark-400/90 rounded-2xl p-8 backdrop-blur-sm overflow-hidden border border-purple-500/10">
-                  <motion.img
-                    src="/mohith.png"
-                    alt="Mohith"
-                    className="relative w-80 h-85 object-cover rounded-xl"
+                  <CursorFollowVideo
+                    areaRef={heroRef}
+                    className="relative w-80 h-85 aspect-square object-cover rounded-xl"
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6, ease: 'easeOut', delay: 0.5 }}
