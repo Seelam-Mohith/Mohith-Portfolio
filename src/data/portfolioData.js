@@ -16,9 +16,9 @@ export const personalData = {
 export const education = {
   degree: 'B.Tech in Computer Science Engineering',
   specialization: 'Cybersecurity, Blockchain and IoT',
-  university: 'University Name',
+  university: 'Chaitanya Bharathi Institute of Technology',
   year: '2023 - 2027',
-  cgpa: '8.5/10',
+  cgpa: '8.62/10',
 }
 
 export const interests = [
