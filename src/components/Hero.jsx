@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { SiLeetcode } from 'react-icons/si'
 import CursorFollowVideo from './CursorFollowVideo'
+import ResumeModal from './ResumeModal'
 import { personalData } from '../data/portfolioData'
 
 const staggerVariants = {
@@ -27,6 +28,7 @@ const fadeUp = {
 
 export default function Hero() {
   const heroRef = useRef(null)
+  const [showResume, setShowResume] = useState(false)
 
   const handleScroll = (id) => {
     const el = document.querySelector(id)
@@ -97,11 +99,10 @@ export default function Hero() {
                 </span>
               </button>
 
-              <a
-                href={personalData.resumeUrl}
-                download
+              <button
+                onClick={() => setShowResume(true)}
                 className="relative inline-flex items-center gap-2 px-6 py-3 font-display font-bold text-sm uppercase tracking-wider
-                  border-2 border-purple-500/50 text-purple-300
+                  border-2 border-purple-500/50 text-purple-300 cursor-pointer
                   transition-all duration-300
                   hover:bg-purple-600/30 hover:border-purple-400 hover:text-white hover:shadow-lg hover:shadow-purple-500/20
                   active:scale-95"
@@ -115,7 +116,7 @@ export default function Hero() {
                   <line x1="12" y1="15" x2="12" y2="3" />
                 </svg>
                 Download Resume
-              </a>
+              </button>
             </motion.div>
 
             <motion.div
@@ -184,6 +185,8 @@ export default function Hero() {
           />
         </div>
       </motion.div>
+
+      <ResumeModal open={showResume} onClose={() => setShowResume(false)} />
     </section>
   )
 }

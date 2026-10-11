@@ -9,8 +9,7 @@ export const personalData = {
     linkedin: 'https://www.linkedin.com/in/mohith-seelam',
     leetcode: 'https://leetcode.com/MohithSeelam',
   },
-  // TODO: Replace with actual resume PDF link (e.g., '/resume.pdf' or Google Drive link)
-  resumeUrl: 'https://drive.google.com/file/d/15l-b3IAN2rFKLFfp8MrjNoMB-hyuBOy7/view?usp=sharing',
+  resumeUrl: '/Mohith_Resume.pdf',
 }
 
 export const education = {
