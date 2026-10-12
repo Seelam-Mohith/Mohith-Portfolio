@@ -300,10 +300,12 @@ function GitHubStats() {
       }),
     }).then(r => r.json())
 
-    const rest = fetch(`https://api.github.com/users/${username}`)
+    const rest = fetch(`https://api.github.com/users/${username}`, { headers })
       .then(r => r.json())
 
-    Promise.all([gql, rest]).then(([gqlData, user]) => {
+    Promise.allSettled([gql, rest]).then(([gqlRes, restRes]) => {
+      const gqlData = gqlRes.status === 'fulfilled' ? gqlRes.value : null
+      const user = restRes.status === 'fulfilled' ? restRes.value : null
       const u = gqlData?.data?.user
       if (u) {
         const weeks = u.contributionsCollection?.contributionCalendar?.weeks || []
@@ -314,7 +316,7 @@ function GitHubStats() {
           totalContributions: u.contributionsCollection?.contributionCalendar?.totalContributions || 0,
         })
       }
-      if (user) {
+      if (user?.login) {
         setUserStats({
           stars: user.public_repos,
           repos: user.public_repos,
