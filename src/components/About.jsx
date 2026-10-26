@@ -76,17 +76,19 @@ function LeetCodeStats() {
     if (!stats?.submissionCalendar) return '—'
     const cal = stats.submissionCalendar
     const DAY = 86400
-    const today = Math.floor(Date.now() / 1000 / DAY) * DAY
+    const days = Object.keys(cal)
+      .map(Number)
+      .filter(ts => cal[ts] > 0)
+      .sort((a, b) => a - b)
+    let max = 0
     let count = 0
-    let current = today
-    if (!cal[current]) {
-      current -= DAY
+    let prev = null
+    for (const ts of days) {
+      count = prev !== null && ts - prev === DAY ? count + 1 : 1
+      if (count > max) max = count
+      prev = ts
     }
-    while (cal[current]) {
-      count++
-      current -= DAY
-    }
-    return count || '—'
+    return max || '—'
   }, [stats])
 
   const monthBlocks = useMemo(() => {
@@ -184,7 +186,7 @@ function LeetCodeStats() {
                 <FaFire className="text-orange-400 text-sm" />
                 <span className="text-2xl font-bold text-orange-400 font-display">{streak}</span>
               </div>
-              <span className="text-xs text-gray-400 font-body">Day Streak</span>
+              <span className="text-xs text-gray-400 font-body">Max Streak</span>
             </div>
           </div>
 
