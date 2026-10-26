@@ -55,13 +55,22 @@ const IconBox = ({ icon: Icon }) => (
   </div>
 )
 
+const resizeBadgeIcon = (icon) =>
+  `https://wsrv.nl/?url=${encodeURIComponent(icon)}&w=96&h=96&output=webp&fit=contain`
+
 function LeetCodeStats() {
   const [stats, setStats] = useState(null)
+  const [badges, setBadges] = useState([])
 
   useEffect(() => {
     fetch('https://leetcode-stats-api.vercel.app/MohithSeelam')
       .then(res => res.json())
       .then(setStats)
+      .catch(() => {})
+
+    fetch('https://alfa-leetcode-api.onrender.com/MohithSeelam/badges')
+      .then(res => res.json())
+      .then(data => setBadges(data.badges || []))
       .catch(() => {})
   }, [])
 
@@ -250,6 +259,22 @@ function LeetCodeStats() {
           </div>
         </div>
       </div>
+
+      {badges.length > 0 && (
+        <div className="flex items-center justify-start gap-2 mt-4">
+          <span className="text-[10px] text-gray-500 font-body mr-1">Badges</span>
+          {badges.map((badge) => (
+            <img
+              key={badge.id}
+              src={resizeBadgeIcon(badge.icon)}
+              alt={badge.displayName}
+              title={badge.displayName}
+              className="w-7 h-7 object-contain opacity-80 hover:opacity-100 transition-opacity"
+              loading="lazy"
+            />
+          ))}
+        </div>
+      )}
     </motion.div>
   )
 }
